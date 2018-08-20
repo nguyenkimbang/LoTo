@@ -48,9 +48,9 @@ $(document).ready(function() {
             onDraw: function() {
             },
             onSuccess: function(data, textStatus, jqXHR) {
-                table.ajax.reload(function() {
-                    loadEditable();
-                });
+                // table.ajax.reload(function() {
+                //     loadEditable();
+                // });
             },
             onFail: function(jqXHR, textStatus, errorThrown) {
             },
