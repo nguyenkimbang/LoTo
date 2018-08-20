@@ -43,9 +43,9 @@ User List
 			</div>
 			<div class="m-portlet__body">
 				<!--begin: Datatable -->
-				<table id="user-table" class="display table table-striped" cellspacing="0" width="100%">
-			        <thead>
-			            <tr>
+				<table id="user-table" class="table table-striped- table-bordered table-hover table-checkable" cellspacing="0" width="100%">
+					<thead>
+						<tr>
 			                <th>ID</th>
 			                <th>Username</th>
 			                <th>Fullname</th>
@@ -53,7 +53,29 @@ User List
 			                <th>Avatar</th>
 			                
 			            </tr>
-			        </thead>
+					</thead>
+					<tbody>
+						{{-- @foreach($listGame as $game) --}}
+						<tr>
+							<td>
+								{{-- {{$game['ID']}} --}}
+							</td>
+							<td>
+								{{-- {{$game['Name']}} --}}
+							</td>
+							<td>
+								{{-- {{$game['Price']}} --}}
+							</td>
+							<td>
+								{{-- {{$game['Code']}} --}}
+							</td>
+							<td>
+								{{-- {{$game['Color']}} --}}
+							</td>
+						</tr>
+						{{-- @endforeach --}}
+
+					</tbody>
 			    </table>
 			</div>
 		</div>

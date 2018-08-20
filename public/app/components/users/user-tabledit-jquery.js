@@ -46,29 +46,18 @@ $(document).ready(function() {
                 editable: [[1, 'Username'], [2, 'Fullname'], [3, 'Role_Code'], [4, 'Avatar']]
             },
             onDraw: function() {
-                console.log('onDraw()');
             },
             onSuccess: function(data, textStatus, jqXHR) {
-                table.ajax.reload();
-                // loadUserDataTable();
-                console.log('onSuccess(data, textStatus, jqXHR)');
-                console.log(data);
-                console.log(textStatus);
-                console.log(jqXHR);
+                table.ajax.reload(function() {
+                    loadEditable();
+                });
             },
             onFail: function(jqXHR, textStatus, errorThrown) {
-                console.log('onFail(jqXHR, textStatus, errorThrown)');
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
             },
             onAlways: function() {
                 console.log('onAlways()');
             },
             onAjax: function(action, serialize) {
-                console.log('onAjax(action, serialize)');
-                console.log(action);
-                console.log(serialize);
             }
         })
     }
