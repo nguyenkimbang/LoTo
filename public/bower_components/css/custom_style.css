@@ -1,0 +1,36 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+/**
+ * text center
+ */
+.t-c{
+	text-align: center;
+}
+
+.m-t-100{
+	margin-top: 100px;
+}
+
+
+.m-grid__item .m-grid__item--fluid .m-login__wrapper {
+	display: block !important;
+}
+
+.m-login.m-login--2.m-login--signin .m-login__signup {
+	display: block;
+}
+
+
+.invalid-feedback strong{
+	padding-left: 20px;
+    font-size: 15px;
+}
+
+.invalid-feedback-line {
+	color: #ff1b1b;
+	padding-left: 20px;
+    font-size: 15px;
+}
