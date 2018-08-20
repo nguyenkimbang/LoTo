@@ -24,11 +24,6 @@ $(document).ready(function() {
                 { data: "Avatar" },
             ],
             order: [ 1, 'asc' ],
-            buttons: [
-                { extend: "create", editor: editor },
-                { extend: "edit",   editor: editor },
-                { extend: "remove", editor: editor }
-            ],
 
             "initComplete": function(settings, json) {
                 console.log(11)

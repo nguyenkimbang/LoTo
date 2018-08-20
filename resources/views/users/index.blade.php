@@ -54,30 +54,9 @@ User List
 			                
 			            </tr>
 					</thead>
-					<tbody>
-						{{-- @foreach($listGame as $game) --}}
-						<tr>
-							<td>
-								{{-- {{$game['ID']}} --}}
-							</td>
-							<td>
-								{{-- {{$game['Name']}} --}}
-							</td>
-							<td>
-								{{-- {{$game['Price']}} --}}
-							</td>
-							<td>
-								{{-- {{$game['Code']}} --}}
-							</td>
-							<td>
-								{{-- {{$game['Color']}} --}}
-							</td>
-						</tr>
-						{{-- @endforeach --}}
-
-					</tbody>
 			    </table>
 			</div>
+		
 		</div>
 	</div>
 </div>
