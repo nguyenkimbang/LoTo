@@ -25,6 +25,7 @@ Route::get('login', 'LoTo\Users\UserController@login');
 Route::get('logout', 'LoTo\Users\UserController@logout');
 Route::middleware('is.login')->get('/dashboard', 'LoTo\DashboardController@index');
 Route::middleware('is.login')->prefix('admin')->group(function () {
+    Route::get('user/get-data', 'LoTo\Users\UserController@getData');
     Route::resource('user', 'LoTo\Users\UserController');
     Route::resource('game', 'LoTo\Games\GameController');
 });

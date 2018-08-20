@@ -1,4 +1,4 @@
-@extends('users.user-app')
+@extends('app')
 @section('title')
 User List
 @stop
@@ -43,43 +43,23 @@ User List
 			</div>
 			<div class="m-portlet__body">
 				<!--begin: Datatable -->
-				<table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
-					<thead>
-						<tr>
-							<th>
-								UserName
-							</th>
-							<th>
-								FullName
-							</th>
-							<th>
-								Rote Code
-							</th>
-							<th>
-								Actions
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($listUser as $user)
-						<tr>
-							<td>
-								{{$user['Username']}}
-							</td>
-							<td>
-								{{$user['Full_Name']}}
-							</td>
-							<td>
-								{{$user['Role_Code']}}
-							</td>
-							<td nowrap></td>
-						</tr>
-						@endforeach
-
-					</tbody>
-				</table>
+				<table id="user-table" class="display table table-striped" cellspacing="0" width="100%">
+			        <thead>
+			            <tr>
+			                <th>ID</th>
+			                <th>Username</th>
+			                <th>Fullname</th>
+			                <th>Rote Code</th>
+			                <th>Avatar</th>
+			                
+			            </tr>
+			        </thead>
+			    </table>
 			</div>
 		</div>
 	</div>
 </div>
+@stop
+@section('scripts')
+{!!Html::script('app/components/users/user-tabledit-jquery.js?v='.time())!!}
 @stop

@@ -18,6 +18,11 @@ class UserController extends Controller
         $this->_getToken();
     }
 
+    public function store(Request $request)
+    {
+        return new JsonResponse(['status' => true, 'data' => ['name' => 1111]]);
+    }
+
     public function login(Request $request)
     {
         $dataReq = self::configData($request->all());

@@ -10,5 +10,9 @@
 {!!Html::script('bower_components/global/plugins/jquery-validation/js/jquery.validate.min.js')!!}
 {!!Html::script('bower_components/global/scripts/metronic.js')!!}
 {!!Html::script('bower_components/admin/layout/scripts/layout.js')!!}
+{!!Html::script('bower_components/jquery-datatables-editable/jquery.dataTables.min.js')!!}
+{!!Html::script('bower_components/jquery-tabledit/jquery.tabledit.js?v='.time())!!}
 
-{{-- {!!Html::script('bower_components/snippets/custom/pages/user/login.js')!!} --}}
+<script type="text/javascript">
+	window.baseUrl = '{!!URL::to('/')!!}';
+</script>

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\LoTo\Users;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use App\User;
 
 //GuzzleException
@@ -25,6 +26,22 @@ class UserController extends Controller
      */
     public function index()
     {
+
+        return view('users.index');
+    }
+
+    /**
+     * [create description]
+     * @author [Nguyen Kim Bang] <[<nguenkimbang208@gmail.com>]>
+     * @return [type] view [redirect to create or edit page]
+     */
+    public function create()
+    {
+        return view('users.partials.add-or-edit');
+    }
+
+    public function getData()
+    {
         $listUser = [];
         /**
          * [$method description]
@@ -40,21 +57,11 @@ class UserController extends Controller
         //call postAPI_v2 function from parent Controller
         $resultRep = self::postAPI_v2($url, $json, "GET");
 
-        if (isset($resultRep['status']) && $resultRep['status']) {
-            $listUser = $resultRep['data'];
-        }
+        // return json_encode($resultRep);
 
-        return view('users.index', compact('listUser'));
-    }
+        // dd($resultRep->toJson);
 
-    /**
-     * [create description]
-     * @author [Nguyen Kim Bang] <[<nguenkimbang208@gmail.com>]>
-     * @return [type] view [redirect to create or edit page]
-     */
-    public function create()
-    {
-        return view('users.partials.add-or-edit');
+        return new JsonResponse($resultRep);
     }
 
     public function login()
