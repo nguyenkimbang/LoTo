@@ -12,7 +12,6 @@
 {!!Html::script('bower_components/admin/layout/scripts/layout.js')!!}
 {!!Html::script('bower_components/jquery-datatable/js/jquery.dataTables.min.js')!!}
 {!!Html::script('bower_components/jquery-tabledit/jquery.tabledit.js?v='.time())!!}
-{!!Html::script('app/components/editable-table/jquery-editable-table-v1-0.js?v='.time())!!}
 
 <script type="text/javascript">
 	window.baseUrl = '{!!URL::to('/')!!}';
