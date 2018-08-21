@@ -33,7 +33,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		</script>
 		<!--end::Web font -->
 
-		@include('../shared/users/head')
+		@include('shared/head')
 
 		<link rel="shortcut icon" href="{!!Asset('images/users/media/img/logos/favicon.ico')!!}" />
 	</head>
@@ -41,14 +41,14 @@ License: You must have a valid license purchased only from themeforest(the above
 	<body  class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 		<!-- begin:: Page -->
 		<div class="m-grid m-grid--hor m-grid--root m-page">
-			@include('../shared/users/header')
+			@include('shared/header')
 			<!-- begin::Body -->
 			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
 				<!-- BEGIN: Left Aside -->
 				<button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
 					<i class="la la-close"></i>
 				</button>
-				@include('../shared/users/navbar')
+				@include('shared/navbar')
 				<!-- END: Left Aside -->
 
 				@yield('contents')
@@ -56,7 +56,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		</div>
 	</body>
 
-	@include('../shared/users/scripts')
+	@include('shared/scripts')
 
 	@yield('scripts')
 </html>

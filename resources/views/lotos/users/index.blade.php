@@ -1,6 +1,6 @@
 @extends('app')
 @section('title')
-Game List Admin
+User List
 @stop
 
 @section('contents')
@@ -22,11 +22,11 @@ Game List Admin
 				<div class="m-portlet__head-caption">
 					<div class="m-portlet__head-title">
 						<h3 class="m-portlet__head-text">
-							List Games
+							List Users
 						</h3>
 					</div>
 				</div>
-				{{-- <div class="m-portlet__head-tools">
+				<div class="m-portlet__head-tools">
 					<ul class="m-portlet__nav">
 						<li class="m-portlet__nav-item">
 							<a href="{!!URL::to('/admin/user/create')!!}" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
@@ -39,56 +39,29 @@ Game List Admin
 							</a>
 						</li>
 					</ul>
-				</div> --}}
+				</div>
 			</div>
 			<div class="m-portlet__body">
 				<!--begin: Datatable -->
-				<table class="table table-striped- table-bordered table-hover table-checkable" id="game-table">
+				<table id="user-table" class="table table-striped- table-bordered table-hover table-checkable" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>
-								ID
-							</th>
-							<th>
-								Code
-							</th>
-							<th>
-								Name
-							</th>
-							<th>
-								Price
-							</th>
-							<th>
-								Color
-							</th>
-							<th>
-								Collection_No
-							</th>
-							<th>
-								Picked_No
-							</th>
-							<th>
-								Expire_Time
-							</th>
-							<th>
-								Draw_Time
-							</th>
-							<th>
-								Image
-							</th>
-							<th>
-								Image
-							</th>
-							<th></th>
-						</tr>
+			                <th>ID</th>
+			                <th>Username</th>
+			                <th>Fullname</th>
+			                <th>Rote Code</th>
+			                <th>Avatar</th>
+			                <th></th>
+			                
+			            </tr>
 					</thead>
-				</table>
+			    </table>
 			</div>
+		
 		</div>
 	</div>
 </div>
 @stop
-
 @section('scripts')
-{!!Html::script('app/components/games/jquery-datatable-game.js?v='.time())!!}
+{!!Html::script('app/components/users/user-tabledit-jquery.js?v='.time())!!}
 @stop

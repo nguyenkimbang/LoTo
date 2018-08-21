@@ -27,7 +27,7 @@ class UserController extends Controller
     public function index()
     {
 
-        return view('users.index');
+        return view('lotos.users.index');
     }
 
     /**
@@ -37,7 +37,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.partials.add-or-edit');
+        return view('lotos.users.partials.add-or-edit');
     }
 
     public function getData()

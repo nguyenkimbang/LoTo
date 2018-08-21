@@ -18,10 +18,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('user')->group(function () {
-    Route::post('login', 'Api\Users\UserController@login');
-    Route::resource('/', 'Api\Users\UserController');
+    Route::post('login', 'Api\LoTo\Users\UserController@login');
+    Route::resource('/', 'Api\LoTo\Users\UserController');
 });
 
 Route::prefix('loto')->group(function () {
+	//route config
+    Route::post('config/remove', 'Api\LoTo\Configs\ConfigController@removeConfig');
+    Route::resource('config', 'Api\LoTo\Configs\ConfigController');
+
+    //rout game
     Route::resource('game', 'Api\LoTo\Games\GameController');
 });

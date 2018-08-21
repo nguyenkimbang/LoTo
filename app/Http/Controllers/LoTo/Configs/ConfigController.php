@@ -1,27 +1,30 @@
 <?php
-namespace App\Http\Controllers\Loto\Games;
+namespace App\Http\Controllers\LoTo\Configs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 
 /**
- *
+ * 
  */
-class GameController extends Controller
+class ConfigController extends Controller
 {
-    public function __construct()
+
+	public function __construct()
     {
         $this->_getApi();
         $this->_getToken();
     }
 
-    public function index()
-    {
-        return view('lotos.games.index');
-    }
+	
+	public function index()
+	{
+		return view('lotos.configs.index');
+	}
 
-    public function getData()
+	public function getData()
     {
+        $listConfig = [];
         /**
          * [$method description]
          * @param [url] $[pathUrl] [<description>]
@@ -30,17 +33,12 @@ class GameController extends Controller
          * @param [method] $[method] [POST, DELETE, PUT]
          * @var string
          */
-        $url = $this->API . 'game?mod=list_game_admin';
+        $url = $this->API . 'setting?mod=list_config';
         $json = [
         ];
         //call postAPI_v2 function from parent Controller
         $resultRep = self::postAPI_v2($url, $json, "GET");
 
         return new JsonResponse($resultRep);
-    }
-
-    public function create()
-    {
-        return view('lotos.games.partials.create');
     }
 }

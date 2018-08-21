@@ -43,7 +43,7 @@ Game List Admin
 			</div>
 			<div class="m-portlet__body">
 				<!--begin: Datatable -->
-				<table class="table table-striped- table-bordered table-hover table-checkable" id="game-table">
+				<table class="table table-striped- table-bordered table-hover table-checkable" id="config-table">
 					<thead>
 						<tr>
 							<th>
@@ -53,33 +53,27 @@ Game List Admin
 								Code
 							</th>
 							<th>
-								Name
+								Game_Code
 							</th>
 							<th>
-								Price
+								Value
 							</th>
 							<th>
-								Color
+								Type
 							</th>
 							<th>
-								Collection_No
+								Parent_Code
 							</th>
 							<th>
-								Picked_No
+								ETH_Address
 							</th>
 							<th>
-								Expire_Time
+								Description
 							</th>
 							<th>
-								Draw_Time
+								Status
 							</th>
-							<th>
-								Image
-							</th>
-							<th>
-								Image
-							</th>
-							<th></th>
+							<th>Action</th>
 						</tr>
 					</thead>
 				</table>
@@ -90,5 +84,6 @@ Game List Admin
 @stop
 
 @section('scripts')
-{!!Html::script('app/components/games/jquery-datatable-game.js?v='.time())!!}
+{!!Html::script('app/components/configs/jquery-datatable-config.js?v='.time())!!}
 @stop
+

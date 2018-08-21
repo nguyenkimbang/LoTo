@@ -10,18 +10,24 @@ $(document).ready(function() {
     var table;
 
     var loadUserDataTable = function() {
-        table = $('#user-table').DataTable( {
+        table = $('#game-table').DataTable( {
             dom: "Bfrtip",
             scrollY: 300,
             paging: false,
             bFilter: false,
-            ajax: window.baseUrl + "/admin/user/get-data",
+            ajax: window.baseUrl + "/admin/game/get-data",
             columns: [
                 { data: "ID" },
-                { data: "Username" },
-                { data: "Full_Name" },
-                { data: "Role_Code" },
-                { data: "Avatar" },
+                { data: "Code" },
+                { data: "Name" },
+                { data: "Price" },
+                { data: "Color" },
+                { data: "Collection_No" },
+                { data: "Picked_No" },
+                { data: "Expire_Time" },
+                { data: "Draw_Time" },
+                { data: "Status" },
+                { data: "Image" },
                 {
                     "mRender": function(data, type, full) {
                         return createActionButton();
@@ -41,7 +47,8 @@ $(document).ready(function() {
     
 
     var loadEditable = function() {
-        $('#user-table').Tabledit({
+        //load edit inline
+        $('#game-table').Tabledit({
             url: window.baseUrl + '/api/user',
             eUrlEdit:{
                 url: window.baseUrl + '/api/user',
@@ -53,13 +60,19 @@ $(document).ready(function() {
                 method: 'PUT'
             },
             columns: {
-                identifier: [0, 'ID'],
+                identifier: [1, 'Code'],
                 editable: [
                     [0, 'ID'],
-                    [1, 'Username'],
-                    [2, 'Fullname'],
-                    [3, 'Role_Code'],
-                    [4, 'Avatar']
+                    [1, 'Code'],
+                    [2, 'Name'],
+                    [3, 'Price'],
+                    [4, 'Color'],
+                    [5, 'Collection_No'],
+                    [6, 'Picked_No'],
+                    [7, 'Expire_Time'],
+                    [8, 'Draw_Time'],
+                    [9, 'Status'],
+                    [10, 'Image']
                 ]
             },
             onDraw: function() {
@@ -94,9 +107,10 @@ $(document).ready(function() {
                    '</button>'+
                '</div>'+
                '<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">'+
-               '<span class="glyphicon glyphicon-pencil"></span>'+
+               '<span class="glyphicon glyphicon-floppy-disk"></span>'+
                '</button>'+
                '<button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">Confirm</button>'+
+               '<button type="button" class="tabledit-restore-button btn btn-sm btn-warning" style="display: none; float: none;">Restore</button>'+
            '</div>'
         return html;
     }

@@ -35,6 +35,14 @@
     font-size: 15px;
 }
 
-#user-table_wrapper .dataTables_scrollHead {
+.dataTables_scrollHead {
 	border-bottom: 0px solid #ddd !important;
+}
+
+.m-topbar .m-topbar__nav.m-nav>.m-nav__item>.m-nav__link .m-topbar__userpic img {
+	border-radius: 50%;
+}
+
+.m-topbar .m-topbar__nav.m-nav>.m-nav__item>.m-nav__link .m-topbar__userpic img:hover {
+	border: 1px solid #adf7fb;
 }
