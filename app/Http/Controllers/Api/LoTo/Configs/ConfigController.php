@@ -2,21 +2,20 @@
 namespace App\Http\Controllers\Api\LoTo\Configs;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 /**
- * 
+ *
  */
 class ConfigController extends Controller
 {
-	
-	public function __construct()
+
+    public function __construct()
     {
         $this->_getApi();
         $this->_getToken();
     }
-
 
     /**
      * [store description]
@@ -29,7 +28,7 @@ class ConfigController extends Controller
 
         if (isset($request->isCreate) && isset($request->Code)) {
             if ($this->checkCreate($request->Code)) {
-                return new JsonResponse(['status' => false,  "msg" => "error", "data" => [], 'code' => 400]);
+                return new JsonResponse(['status' => false, "msg" => "error", "data" => [], 'code' => 400]);
             }
         }
 
@@ -43,7 +42,14 @@ class ConfigController extends Controller
         return new JsonResponse($resultRep);
     }
 
-    public function checkCreate($code) {
+    /**
+     * [checkCreate description]
+     * check exist code
+     * @param  [type] $code [description]
+     * @return [type]       [description]
+     */
+    public function checkCreate($code)
+    {
 
         $url = $this->API . 'setting?mod=list_config';
         $json = [
@@ -52,11 +58,10 @@ class ConfigController extends Controller
         $resultRep = self::postAPI_v2($url, $json, "GET");
 
         foreach ($resultRep['data'] as $key => $value) {
-           if ($code == $value['Code']) {
+            if ($code == $value['Code']) {
                 return true;
-           }
+            }
         }
-
 
         return false;
     }
@@ -80,17 +85,17 @@ class ConfigController extends Controller
     public function configDataReq($dataReq = [])
     {
         if (!empty($dataReq)) {
-        	return [
-        		'mod'			=>'update_config',
-                'code'			=>isset($dataReq['Code']) ? $dataReq['Code'] : '',
-                'type'			=>isset($dataReq['Type']) ? $dataReq['Type'] : '',
-                'value'			=>isset($dataReq['Value']) ? $dataReq['Value'] : '',
-                'status'		=>isset($dataReq['Status']) ? $dataReq['Status'] : '',
-                'game_code'		=>isset($dataReq['Game_Code']) ? $dataReq['Game_Code'] : '',
-                'parent_code'	=>isset($dataReq['Parent_Code']) ? $dataReq['Parent_Code'] : '',
-                'ETH_address'	=>isset($dataReq['ETH_Address']) ? $dataReq['ETH_Address'] : '',
-                'description'	=>isset($dataReq['Description']) ? $dataReq['Description'] : ''
-        	];
+            return [
+                'mod' => 'update_config',
+                'code' => isset($dataReq['Code']) ? $dataReq['Code'] : '',
+                'type' => isset($dataReq['Type']) ? $dataReq['Type'] : '',
+                'value' => isset($dataReq['Value']) ? $dataReq['Value'] : '',
+                'status' => isset($dataReq['Status']) ? $dataReq['Status'] : '',
+                'game_code' => isset($dataReq['Game_Code']) ? $dataReq['Game_Code'] : '',
+                'parent_code' => isset($dataReq['Parent_Code']) ? $dataReq['Parent_Code'] : '',
+                'ETH_address' => isset($dataReq['ETH_Address']) ? $dataReq['ETH_Address'] : '',
+                'description' => isset($dataReq['Description']) ? $dataReq['Description'] : '',
+            ];
         }
 
         return [];
@@ -98,7 +103,7 @@ class ConfigController extends Controller
 
     public function checkFileRequest(Request $request)
     {
-    	if ($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $file = $request->image;
 
             if ($file->getClientSize() > 0) {

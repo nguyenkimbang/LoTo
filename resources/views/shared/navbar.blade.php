@@ -62,7 +62,7 @@
 			</li>
 			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
 				<a  href="{{URL::to('/admin/config')}}" class="m-menu__link m-menu__toggle">
-					<i class="m-menu__link-icon flaticon-interface-8"></i>
+					<i class="m-menu__link-icon flaticon-settings"></i>
 					<span class="m-menu__link-text">
 						Configs
 					</span>
@@ -78,6 +78,16 @@
 								</i>
 								<span class="m-menu__link-text">
 									List Config
+								</span>
+							</a>
+						</li>
+						<li class="m-menu__item " aria-haspopup="true" >
+							<a  href="{{URL::to('/admin/config/setting')}}" class="m-menu__link ">
+								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+									<span></span>
+								</i>
+								<span class="m-menu__link-text">
+									System Setting
 								</span>
 							</a>
 						</li>

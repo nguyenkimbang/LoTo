@@ -24,16 +24,8 @@ class ConfigController extends Controller
 
     public function create()
 	{
-        $url = $this->API . 'setting?mod=list_config';
-        $json = [
-        ];
+        $listParentCode = $this->getListParentCode($resultRep['data']);
 
-        //call postAPI_v2 function from parent Controller
-        $resultRep = self::postAPI_v2($url, $json, "GET");       
-
-        if (isset($resultRep['data'])) {
-            $listParentCode = $this->getListParentCode($resultRep['data']);
-        }
 		return view('lotos.configs.partials.add-config', compact('listParentCode'));
 	}
 
@@ -58,21 +50,39 @@ class ConfigController extends Controller
         return new JsonResponse($resultRep);
     }
 
+    /**
+     * [getListParentCode description]
+     * get list config with total percent form childs < 100
+     *
+     * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
     public function getListParentCode($data)
     {
+
+        $url = $this->API . 'setting?mod=list_config';
+        $json = [
+        ];
+
+        //call postAPI_v2 function from parent Controller
+        $resultRep = self::postAPI_v2($url, $json, "GET");  
+
         $listParentCode = [];
-        foreach ($data as $key => $value) {
-            $totalPecent = 0;
-            foreach ($data as $childKey => $second) {
-                if ($value['Code'] != $second['Code']) {
-                    if ($second['Parent_Code'] == $value['Code']) {
-                        $totalPecent += $second['Value']; 
+        if ($resultRep['data']) {
+            foreach ($resultRep['data'] as $key => $code) {
+                $totalPecent = 0;
+                foreach ($resultRep['data'] as $childKey => $parentCode) {
+                    if ($code['Code'] != $parentCode['Code']) {
+                        if ($parentCode['Parent_Code'] == $code['Code']) {
+                            $totalPecent += $parentCode['Value']; 
+                        }
                     }
                 }
-            }
 
-            if ($totalPecent < 100) {
-                $listParentCode[] = $value['Code'];
+                if ($totalPecent < 100) {
+                    $listParentCode[] = $code['Code'];
+                }
             }
         }
 

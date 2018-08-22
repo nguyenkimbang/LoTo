@@ -14,6 +14,7 @@ class Controller extends BaseController
 
     protected $API;
     protected $token;
+    protected $listSetting;
 
     /**
      * [__construct description]

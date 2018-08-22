@@ -1,6 +1,6 @@
 @extends('app')
 @section('title')
-Game List Admin
+Config | System Setting
 @stop
 
 @section('contents')
@@ -22,28 +22,28 @@ Game List Admin
 				<div class="m-portlet__head-caption">
 					<div class="m-portlet__head-title">
 						<h3 class="m-portlet__head-text">
-							List Games
+							List System Setting
 						</h3>
 					</div>
 				</div>
-				{{-- <div class="m-portlet__head-tools">
+				<div class="m-portlet__head-tools">
 					<ul class="m-portlet__nav">
 						<li class="m-portlet__nav-item">
-							<a href="{!!URL::to('/admin/user/create')!!}" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+							<a href="{!!URL::to('/admin/config/setting/create')!!}" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 								<span>
 									<i class="la la-plus"></i>
 									<span>
-										Add User
+										Add Setting
 									</span>
 								</span>
 							</a>
 						</li>
 					</ul>
-				</div> --}}
+				</div>
 			</div>
 			<div class="m-portlet__body">
 				<!--begin: Datatable -->
-				<table class="table table-striped- table-bordered table-hover table-checkable" id="config-table">
+				<table class="table table-striped- table-bordered table-hover table-checkable" id="system-table">
 					<thead>
 						<tr>
 							<th>
@@ -68,4 +68,3 @@ Game List Admin
 @section('scripts')
 {!!Html::script('app/components/configs/settings/jquery-datatable-system.js?v='.time())!!}
 @stop
-

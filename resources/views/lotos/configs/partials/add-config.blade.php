@@ -1,6 +1,6 @@
 @extends('app')
 @section('title')
-Game | Create
+Config | Create
 @stop
 @section('contents')
 <div class="m-portlet m-portlet--tab col-xs-12">

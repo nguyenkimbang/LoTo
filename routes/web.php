@@ -29,8 +29,11 @@ Route::middleware('is.login')->prefix('admin')->group(function () {
     Route::get('user/get-data', 'LoTo\Users\UserController@getData');
     Route::resource('user', 'LoTo\Users\UserController');
 
+    //route system setting
+    Route::get('config/setting/get-data', 'LoTo\Configs\Settings\SystemSettingController@getData');
+    Route::resource('config/setting', 'LoTo\Configs\Settings\SystemSettingController');
+
     //route config
-    Route::get('config/system/get-data', 'LoTo\Configs\ConfigController@getDataSystem');
     Route::get('config/get-data', 'LoTo\Configs\ConfigController@getData');
     Route::resource('config', 'LoTo\Configs\ConfigController');
 
