@@ -227,6 +227,8 @@ if (typeof jQuery === 'undefined') {
                 $(td).addClass('tabledit-view-mode').removeClass('tabledit-edit-mode');
                 // Update toolbar buttons.
                 if (settings.editButton) {
+                    $tr.find('button.tabledit-edit-button').show();
+                    $tr.find('button.tabledit-delete-button').show();
                     $tr.find('button.tabledit-save-button').hide();
                     $tr.find('button.tabledit-cancel-button').hide();
                     $tr.find('button.tabledit-edit-button').removeClass('active').blur();
@@ -253,6 +255,8 @@ if (typeof jQuery === 'undefined') {
                 // Update toolbar buttons.
                 if (settings.editButton) {
                     $tr.find('button.tabledit-edit-button').addClass('active');
+                    $tr.find('button.tabledit-edit-button').hide();
+                    $tr.find('button.tabledit-delete-button').hide();
                     $tr.find('button.tabledit-save-button').show();
                     $tr.find('button.tabledit-cancel-button').show();
                 }
@@ -266,6 +270,7 @@ if (typeof jQuery === 'undefined') {
          */
         var Edit = {
             reset: function(td) {
+                console.log($(td));
                 $(td).each(function() {
                     // Get input element.
                     var $input = $(this).find('.tabledit-input');
@@ -560,6 +565,7 @@ if (typeof jQuery === 'undefined') {
                     Edit.reset($table.find('td.tabledit-edit-mode'));
 
                     if (!activated) {
+                        // console.log($($button.parents('tr').find('td.tabledit-view-mode').get().reverse()));
                         // Change to edit mode for all columns in reverse way.
                         $($button.parents('tr').find('td.tabledit-view-mode').get().reverse()).each(function() {
                             Mode.edit(this);
