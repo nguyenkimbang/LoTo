@@ -292,6 +292,10 @@ if (typeof jQuery === 'undefined') {
                 // Send AJAX request to server.
                 var ajaxResult = ajax(settings.buttons.edit.action).then(function() {
                     if (requestSuccess) {
+                    	setTimeout(function() {
+                    		$('#show-note').html('Success!').addClass('success');
+                    	}, 500);
+                    	
                         $(td).each(function() {
                             // Get input element.
                             var $input = $(this).find('.tabledit-input');
@@ -346,7 +350,9 @@ if (typeof jQuery === 'undefined') {
                 // Send AJAX request to server.
                 var ajaxResult = ajax(settings.buttons.delete.action).then(function() {
                     if (requestSuccess) {
-                        $('#show-note').html('Success!').addClass('danger');
+                        setTimeout(function() {
+                    		$('#show-note').html('Success!').addClass('success');
+                    	}, 500);
                         Delete.reset(td);
                         $(td).parent('tr').remove();
                     }
@@ -429,7 +435,6 @@ if (typeof jQuery === 'undefined') {
             }, 'json');
 
             jqXHR.fail(function(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR, textStatus, errorThrown);
                 if (action === settings.buttons.delete.action) {
                     $('button.tabledit-save-button').removeAttr('disabled');
                     $lastDeletedRow.removeClass(settings.mutedClass).addClass(settings.dangerClass);

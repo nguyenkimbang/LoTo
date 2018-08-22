@@ -92,7 +92,7 @@ function showErorr(data) {
                 $("html").scrollTop(0);
                 break;
             case 400:
-                $('#show-error-config').html("This confif existed!").addClass('danger');
+                $('#show-error-config').html("This setting existed!").addClass('danger');
                 $("html").scrollTop(0);
                 break;
         }

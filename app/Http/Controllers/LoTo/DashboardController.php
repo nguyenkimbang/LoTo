@@ -11,8 +11,7 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        // $this->_getApi();
-        //       $this->_getToken();
+        $this->_setToken();
     }
 
     public function index()

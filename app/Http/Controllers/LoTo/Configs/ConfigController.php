@@ -12,8 +12,7 @@ class ConfigController extends Controller
 
 	public function __construct()
     {
-        $this->_getApi();
-        $this->_getToken();
+        $this->_setToken();
     }
 
 	
@@ -24,7 +23,7 @@ class ConfigController extends Controller
 
     public function create()
 	{
-        $listParentCode = $this->getListParentCode($resultRep['data']);
+        $listParentCode = $this->getListParentCode();
 
 		return view('lotos.configs.partials.add-config', compact('listParentCode'));
 	}
@@ -40,12 +39,12 @@ class ConfigController extends Controller
          * @param [method] $[method] [POST, DELETE, PUT]
          * @var string
          */
-        $url = $this->API . 'setting?mod=list_config';
+        $url = config('app.api') . 'setting?mod=list_config';
         $json = [
         ];
 
-        //call postAPI_v2 function from parent Controller
-        $resultRep = self::postAPI_v2($url, $json, "GET");       
+        //call postApi function from parent Controller
+        $resultRep = $this->postApi($url, $json, "GET");       
 
         return new JsonResponse($resultRep);
     }
@@ -58,15 +57,14 @@ class ConfigController extends Controller
      * @param  [type] $data [description]
      * @return [type]       [description]
      */
-    public function getListParentCode($data)
+    public function getListParentCode()
     {
 
-        $url = $this->API . 'setting?mod=list_config';
-        $json = [
-        ];
+        $url = config('app.api') . 'setting?mod=list_config';
+        $json = [];
 
-        //call postAPI_v2 function from parent Controller
-        $resultRep = self::postAPI_v2($url, $json, "GET");  
+        //call postApi function from parent Controller
+        $resultRep = $this->postApi($url, $json, "GET");  
 
         $listParentCode = [];
         if ($resultRep['data']) {

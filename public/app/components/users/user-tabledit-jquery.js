@@ -17,7 +17,6 @@ $(document).ready(function() {
             bFilter: false,
             ajax: window.baseUrl + "/admin/user/get-data",
             columns: [
-                { data: "ID" },
                 { data: "Username" },
                 { data: "Full_Name" },
                 { data: "Role_Code" },
@@ -53,13 +52,11 @@ $(document).ready(function() {
                 method: 'PUT'
             },
             columns: {
-                identifier: [0, 'ID'],
+                identifier: [0, 'Username'],
                 editable: [
-                    [0, 'ID'],
-                    [1, 'Username'],
-                    [2, 'Fullname'],
-                    [3, 'Role_Code'],
-                    [4, 'Avatar']
+                    [1, 'Fullname'],
+                    [2, 'Role_Code'],
+                    [3, 'Avatar']
                 ]
             },
             onDraw: function() {
@@ -84,20 +81,24 @@ $(document).ready(function() {
     loadUserDataTable();
 
     function createActionButton() {
+        var disable = '';
         var html =
-            '<div class="tabledit-toolbar btn-toolbar" style="text-align: left;">'+
-               '<div class="btn-group btn-group-sm" style="float: none;">'+
-                   '<button type="button" class="tabledit-edit-button btn btn-sm btn-default" style="float: none;">'+
-                       '<span class="glyphicon glyphicon-pencil"></span>'
-                   +'</button><button type="button" class="tabledit-delete-button btn btn-sm btn-default" style="float: none;">'+
-                       '<span class="glyphicon glyphicon-trash"></span>'+
-                   '</button>'+
-               '</div>'+
-               '<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">'+
-               '<span class="glyphicon glyphicon-pencil"></span>'+
+        '<div class="tabledit-toolbar btn-toolbar" style="text-align: left;">'+
+           '<div class="btn-group btn-group-sm" style="float: none;">'+
+               '<button type="button" class="tabledit-edit-button btn btn-sm btn-default" style="float: none;"'+ disable +'>'+
+                   '<span class="glyphicon glyphicon-pencil"></span>'+
+                '</button>'+
+               '</button><button type="button" class="tabledit-delete-button btn btn-sm btn-default" style="float: none;"'+ disable +'>'+
+                   '<span class="glyphicon glyphicon-trash"></span>'+
                '</button>'+
-               '<button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">Confirm</button>'+
-           '</div>'
+               '<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">'+
+                   '<span class="glyphicon glyphicon-floppy-disk"></span>'+
+               '</button>'+
+               '<button type="button" class="tabledit-cancel-button btn btn-sm btn-default" style="display: none; float: none;">'+
+                   '<span class="glyphicon glyphicon-remove"></span>'+
+               '</button>'
+            '</div>'+
+       '</div>';
         return html;
     }
     

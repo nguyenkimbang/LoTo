@@ -13,14 +13,14 @@ class GameController extends Controller
 
     public function __construct()
     {
-        $this->_getApi();
-        $this->_getToken();
+        $this->_setToken();
     }
+
 
     public function store(Request $request)
     {
 
-        $dataReq = self::configDataReq($request->all());
+        $dataReq = $this->configDataReq($request->all());
 
         if ($request->hasFile('image')) {
             $file = $request->image;
@@ -41,12 +41,9 @@ class GameController extends Controller
             }
         }
 
-        $url = $this->API . 'game';
+        $url = config('app.api') . 'game';
 
-        //call postAPI_v2 function from parent Controller
-        $resultRep = $this->uploadAPI_v2($url, $dataReq);
-
-        return new JsonResponse(['data' => $resultRep]);
+        return new JsonResponse($this->postApiHasFile($url, $dataReq));
     }
 
     public function configDataReq($dataReq = [])

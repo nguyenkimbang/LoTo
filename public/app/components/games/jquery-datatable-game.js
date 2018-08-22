@@ -17,7 +17,6 @@ $(document).ready(function() {
             bFilter: false,
             ajax: window.baseUrl + "/admin/game/get-data",
             columns: [
-                { data: "ID" },
                 { data: "Code" },
                 { data: "Name" },
                 { data: "Price" },
@@ -60,19 +59,17 @@ $(document).ready(function() {
                 method: 'PUT'
             },
             columns: {
-                identifier: [1, 'Code'],
+                identifier: [0, 'Code'],
                 editable: [
-                    [0, 'ID'],
-                    [1, 'Code'],
-                    [2, 'Name'],
-                    [3, 'Price'],
-                    [4, 'Color'],
-                    [5, 'Collection_No'],
-                    [6, 'Picked_No'],
-                    [7, 'Expire_Time'],
-                    [8, 'Draw_Time'],
-                    [9, 'Status'],
-                    [10, 'Image']
+                    [1, 'Name'],
+                    [2, 'Price'],
+                    [3, 'Color'],
+                    [4, 'Collection_No'],
+                    [5, 'Picked_No'],
+                    [6, 'Expire_Time'],
+                    [7, 'Draw_Time'],
+                    [8, 'Status'],
+                    [9, 'Image']
                 ]
             },
             onDraw: function() {
@@ -97,21 +94,24 @@ $(document).ready(function() {
     loadUserDataTable();
 
     function createActionButton() {
+        var disable = '';
         var html =
-            '<div class="tabledit-toolbar btn-toolbar" style="text-align: left;">'+
-               '<div class="btn-group btn-group-sm" style="float: none;">'+
-                   '<button type="button" class="tabledit-edit-button btn btn-sm btn-default" style="float: none;">'+
-                       '<span class="glyphicon glyphicon-pencil"></span>'
-                   +'</button><button type="button" class="tabledit-delete-button btn btn-sm btn-default" style="float: none;">'+
-                       '<span class="glyphicon glyphicon-trash"></span>'+
-                   '</button>'+
-               '</div>'+
-               '<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">'+
-               '<span class="glyphicon glyphicon-floppy-disk"></span>'+
+        '<div class="tabledit-toolbar btn-toolbar" style="text-align: left;">'+
+           '<div class="btn-group btn-group-sm" style="float: none;">'+
+               '<button type="button" class="tabledit-edit-button btn btn-sm btn-default" style="float: none;"'+ disable +'>'+
+                   '<span class="glyphicon glyphicon-pencil"></span>'+
+                '</button>'+
+               '</button><button type="button" class="tabledit-delete-button btn btn-sm btn-default" style="float: none;"'+ disable +'>'+
+                   '<span class="glyphicon glyphicon-trash"></span>'+
                '</button>'+
-               '<button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">Confirm</button>'+
-               '<button type="button" class="tabledit-restore-button btn btn-sm btn-warning" style="display: none; float: none;">Restore</button>'+
-           '</div>'
+               '<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">'+
+                   '<span class="glyphicon glyphicon-floppy-disk"></span>'+
+               '</button>'+
+               '<button type="button" class="tabledit-cancel-button btn btn-sm btn-default" style="display: none; float: none;">'+
+                   '<span class="glyphicon glyphicon-remove"></span>'+
+               '</button>'
+            '</div>'+
+       '</div>';
         return html;
     }
     

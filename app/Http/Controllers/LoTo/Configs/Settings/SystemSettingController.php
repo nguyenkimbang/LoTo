@@ -12,8 +12,7 @@ class SystemSettingController extends Controller
 
     public function __construct()
     {
-        $this->_getApi();
-        $this->_getToken();
+        $this->_setToken();
     }
 
     /**
@@ -41,25 +40,15 @@ class SystemSettingController extends Controller
      */
     public function getData()
     {
-        $listConfig = [];
-        /**
-         * [$method description]
-         * @param [url] $[pathUrl] [<description>]
-         * $url: example: user or user/get/id=..;
-         * @param [array] $[json] [array data]
-         * @param [method] $[method] [POST, DELETE, PUT]
-         * @var string
-         */
-        $url = $this->API . 'setting?mod=system_settings';
-        $json = [
-        ];
+        $urlConApi = config('app.api') . 'setting?mod=system_settings';
+        $json = [];
 
         //call postAPI_v2 function from parent Controller
-        $resultRep = self::postAPI_v2($url, $json, "GET");
+        $resultRep = $this->postApi($urlConApi, $json, "GET");
 
-        if (isset($resultRep['data'])) {
-            $this->listSetting = $resultRep['data'];
-        }
+        // if (isset($resultRep['data'])) {
+        //     config(['app.list-setting' => $resultRep['data']]);
+        // }
 
         return new JsonResponse($resultRep);
     }

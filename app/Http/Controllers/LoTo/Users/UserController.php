@@ -15,8 +15,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->_getApi();
-        $this->_getToken();
+        $this->_setToken();
     }
 
     /**
@@ -51,11 +50,11 @@ class UserController extends Controller
          * @param [method] $[method] [POST, DELETE, PUT]
          * @var string
          */
-        $url = $this->API . 'users?mod=get_info_user&id=1';
+        $url = config('app.api') . 'users?mod=get_info_user&id=1';
         $json = [
         ];
         //call postAPI_v2 function from parent Controller
-        $resultRep = self::postAPI_v2($url, $json, "GET");
+        $resultRep = $this->postApi($url, $json, "GET");
 
         // return json_encode($resultRep);
 

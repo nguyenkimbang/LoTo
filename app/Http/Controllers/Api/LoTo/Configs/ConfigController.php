@@ -13,8 +13,7 @@ class ConfigController extends Controller
 
     public function __construct()
     {
-        $this->_getApi();
-        $this->_getToken();
+        $this->_setToken();
     }
 
     /**
@@ -34,10 +33,10 @@ class ConfigController extends Controller
 
         $dataReq = self::configDataReq($request->all());
 
-        $url = $this->API . 'setting';
+        $url = config('app.api') . 'setting';
 
         //call postAPI_v2 function from parent Controller
-        $resultRep = $this->postAPI_v2($url, $dataReq);
+        $resultRep = $this->postApi($url, $dataReq);
 
         return new JsonResponse($resultRep);
     }
@@ -51,15 +50,17 @@ class ConfigController extends Controller
     public function checkCreate($code)
     {
 
-        $url = $this->API . 'setting?mod=list_config';
+        $url = config('app.api') . 'setting?mod=list_config';
         $json = [
         ];
 
-        $resultRep = self::postAPI_v2($url, $json, "GET");
+        $resultRep = $this->postApi($url, $json, "GET");
 
-        foreach ($resultRep['data'] as $key => $value) {
-            if ($code == $value['Code']) {
-                return true;
+        if (isset($resultRep['data'])) {
+            foreach ($resultRep['data'] as $key => $value) {
+                if ($code == $value['Code']) {
+                    return true;
+                }
             }
         }
 
@@ -68,10 +69,10 @@ class ConfigController extends Controller
 
     public function removeConfig(Request $request)
     {
-        $url = $this->API . 'setting?mod=delete_config&code=' . $request->Code;
+        $url = config('app.api') . 'setting?mod=delete_config&code=' . $request->Code;
 
         //call postAPI_v2 function from parent Controller
-        $resultRep = $this->postAPI_v2($url, [], 'DELETE');
+        $resultRep = $this->postApi($url, [], 'DELETE');
 
         return new JsonResponse($resultRep);
     }

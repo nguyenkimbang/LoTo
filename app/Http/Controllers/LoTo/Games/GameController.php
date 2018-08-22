@@ -11,8 +11,7 @@ class GameController extends Controller
 {
     public function __construct()
     {
-        $this->_getApi();
-        $this->_getToken();
+        $this->_setToken();
     }
 
     public function index()
@@ -30,11 +29,10 @@ class GameController extends Controller
          * @param [method] $[method] [POST, DELETE, PUT]
          * @var string
          */
-        $url = $this->API . 'game?mod=list_game_admin';
-        $json = [
-        ];
+        $url = config('app.api') . 'game?mod=list_game_admin';
+        $json = [];
         //call postAPI_v2 function from parent Controller
-        $resultRep = self::postAPI_v2($url, $json, "GET");
+        $resultRep = self::postApi($url, $json, "GET");
 
         return new JsonResponse($resultRep);
     }

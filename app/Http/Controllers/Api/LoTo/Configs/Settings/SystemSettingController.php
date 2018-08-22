@@ -13,8 +13,7 @@ class SystemSettingController extends Controller
 
     public function __construct()
     {
-        $this->_getApi();
-        $this->_getToken();
+        $this->_setToken();
     }
 
     /**
@@ -27,8 +26,7 @@ class SystemSettingController extends Controller
      */
     public function store(Request $request)
     {
-
-        if (isset($request->isCreate) && isset($request->Code)) {
+        if (isset($request->Code)) {
             if ($this->checkExistCode($request->Code)) {
                 return new JsonResponse(['status' => false, "msg" => "error", "data" => [], 'code' => 400]);
             }
@@ -36,7 +34,9 @@ class SystemSettingController extends Controller
 
         $dataReq = $this->configDataRequest($request->all());
 
-        return new JsonResponse($this->conApi($dataReq));
+        $url = config('app.api') . 'setting';
+
+        return new JsonResponse($this->postApi($url, $dataReq));
     }
 
     /**
@@ -51,7 +51,9 @@ class SystemSettingController extends Controller
     {
         $dataReq = $this->configDataRequest($request->all());
 
-        return new JsonResponse($this->conApi($dataReq));
+        $url = config('API') . 'setting';
+
+        return new JsonResponse($this->postApi($url, $dataReq));
     }
 
     /**
@@ -64,12 +66,9 @@ class SystemSettingController extends Controller
      */
     public function remove(Request $request)
     {
-        $url = $this->API . 'setting?mod=delete_config&code=' . $request->Code;
+        $url = config('app.api') . 'setting?mod=delete_config&code=' . $request->Code;
 
-        //call postAPI_v2 function from parent Controller
-        $resultRep = $this->postAPI_v2($url, [], 'DELETE');
-
-        return new JsonResponse($dataReq);
+        return new JsonResponse($this->postApi($url, [], 'DELETE'));
     }
 
     /**
@@ -82,10 +81,16 @@ class SystemSettingController extends Controller
      */
     public function checkExistCode($code)
     {
-        if (isset($this->listSetting) && is_array($this->listSetting)) {
-            $listSetting = $this->listSetting;
-            foreach ($listSetting as $key => $value) {
-                if (isset($value['Code']) && $code == $value['Code']) {
+
+        $urlConApi = config('app.api') . 'setting?mod=system_settings';
+        $json = [];
+
+        //call postAPI_v2 function from parent Controller
+        $resultRep = $this->postApi($urlConApi, $json, "GET");
+       
+        if (isset($resultRep['data'])) {
+            foreach ($resultRep['data'] as $key => $value) {
+                if ($code == $value['Code']) {
                     return true;
                 }
             }
@@ -110,20 +115,5 @@ class SystemSettingController extends Controller
             'Value' => (isset($data['Value'])) ? $data['Value'] : '',
             'Description' => (isset($data['Description'])) ? $data['Description'] : '',
         ];
-    }
-
-    /**
-     * [conApi description]
-     * connet api server
-     *
-     * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
-     * @return [type] [description]
-     */
-    public function conApi($dataReq)
-    {
-        $url = $this->API . 'setting';
-
-        //call postAPI_v2 function from parent Controller
-        return $this->postAPI_v2($url, $dataReq);
     }
 }

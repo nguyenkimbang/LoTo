@@ -14,8 +14,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->_getApi();
-        $this->_getToken();
+        $this->_setToken();
     }
 
     public function store(Request $request)
@@ -25,12 +24,12 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        $dataReq = self::configData($request->all());
+        $dataReq = $this->configData($request->all());
 
-        $url = $this->API . 'users';
+        $url = config('app.api') . 'users';
 
         //call postAPI_v2 function from parent Controller
-        $resultRep = self::postAPI_v2($url, $dataReq);
+        $resultRep = $this->postApi($url, $dataReq);
 
         if (isset($resultRep['status']) && $resultRep['status']) {
             $token = 'LOGO ' . $resultRep['data'][0]['token'];
