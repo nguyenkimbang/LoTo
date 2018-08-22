@@ -26,29 +26,29 @@ Game List Admin
 						</h3>
 					</div>
 				</div>
-				{{-- <div class="m-portlet__head-tools">
+				<div class="m-portlet__head-tools">
 					<ul class="m-portlet__nav">
 						<li class="m-portlet__nav-item">
-							<a href="{!!URL::to('/admin/user/create')!!}" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+							<a href="{!!URL::to('/admin/config/create')!!}" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 								<span>
 									<i class="la la-plus"></i>
 									<span>
-										Add User
+										Add Config
 									</span>
 								</span>
 							</a>
 						</li>
 					</ul>
-				</div> --}}
+				</div>
 			</div>
 			<div class="m-portlet__body">
+				<div class="col-md-12 col-xs-12 show-note">
+					<div class="" id="show-note"></div>
+				</div>
 				<!--begin: Datatable -->
 				<table class="table table-striped- table-bordered table-hover table-checkable" id="config-table">
 					<thead>
 						<tr>
-							<th>
-								ID
-							</th>
 							<th>
 								Code
 							</th>

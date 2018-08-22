@@ -46,3 +46,17 @@
 .m-topbar .m-topbar__nav.m-nav>.m-nav__item>.m-nav__link .m-topbar__userpic img:hover {
 	border: 1px solid #adf7fb;
 }
+
+.danger {
+	color: #f36b6b;
+}
+
+.success {
+	color: #29e652
+}
+
+.show-note {
+	text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+}

@@ -27,6 +27,12 @@ class ConfigController extends Controller
     public function store(Request $request)
     {
 
+        if (isset($request->isCreate) && isset($request->Code)) {
+            if ($this->checkCreate($request->Code)) {
+                return new JsonResponse(['status' => false,  "msg" => "error", "data" => [], 'code' => 400]);
+            }
+        }
+
         $dataReq = self::configDataReq($request->all());
 
         $url = $this->API . 'setting';
@@ -37,9 +43,26 @@ class ConfigController extends Controller
         return new JsonResponse($resultRep);
     }
 
+    public function checkCreate($code) {
+
+        $url = $this->API . 'setting?mod=list_config';
+        $json = [
+        ];
+
+        $resultRep = self::postAPI_v2($url, $json, "GET");
+
+        foreach ($resultRep['data'] as $key => $value) {
+           if ($code == $value['Code']) {
+                return true;
+           }
+        }
+
+
+        return false;
+    }
+
     public function removeConfig(Request $request)
     {
-    	return new JsonResponse(['status'=>true]);
         $url = $this->API . 'setting?mod=delete_config&code=' . $request->Code;
 
         //call postAPI_v2 function from parent Controller

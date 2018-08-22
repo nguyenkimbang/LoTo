@@ -11,7 +11,6 @@ $(document).ready(function() {
             bFilter: false,
             ajax: window.baseUrl + "/admin/config/get-data",
             columns: [
-                { data: "ID" },
                 { data: "Code" },
                 { data: "Game_Code" },
                 { data: "Value" },
@@ -22,6 +21,7 @@ $(document).ready(function() {
                 { data: "Status" },
                 {
                     "mRender": function(data, type, full) {
+                        console.log(full);
                         var disable = '';
                         if (typeof full != 'undifine' && typeof full.Type != 'undifine' && full.Type == 1) {
                             disable = 'disabled'
@@ -30,22 +30,21 @@ $(document).ready(function() {
                         '<div class="tabledit-toolbar btn-toolbar" style="text-align: left;">'+
                            '<div class="btn-group btn-group-sm" style="float: none;">'+
                                '<button type="button" class="tabledit-edit-button btn btn-sm btn-default" style="float: none;"'+ disable +'>'+
-                                   '<span class="glyphicon glyphicon-pencil"></span>'
-                               +'</button><button type="button" class="tabledit-delete-button btn btn-sm btn-default" style="float: none;"'+ disable +'>'+
+                                   '<span class="glyphicon glyphicon-pencil"></span>'+
+                                '</button>'+
+                               '</button><button type="button" class="tabledit-delete-button btn btn-sm btn-default" style="float: none;"'+ disable +'>'+
                                    '<span class="glyphicon glyphicon-trash"></span>'+
                                '</button>'+
                            '</div>'+
-                           '<div class="btn-group btn-group-sm" style="float: none;">'+
+                           '<div class="btn-group btn-group-sm tabledit-save-button" style="float: none;">'+
                                '<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">'+
                                    '<span class="glyphicon glyphicon-floppy-disk"></span>'+
                                '</button>'+
-                               '<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">'+
-                                   '<span class="glyphicon glyphicon-floppy-disk"></span>'+
+                               '<button type="button" class="tabledit-cancel-button btn btn-sm btn-default" style="display: none; float: none;">'+
+                                   '<span class="glyphicon glyphicon-remove"></span>'+
                                '</button>'
                             '</div>'+
-                           '<button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">Confirm</button>'+
-                           '<button type="button" class="tabledit-restore-button btn btn-sm btn-warning" style="display: none; float: none;">Restore</button>'+
-                       '</div>'
+                       '</div>';
                         return html;
                     }
                 }
@@ -75,16 +74,15 @@ $(document).ready(function() {
                 method: 'POST'
             },
             columns: {
-                identifier: [1, 'Code'],
+                identifier: [0, 'Code'],
                 editable: [
-                    [0, 'ID'],
-                    [2, 'Game_Code'],
-                    [3, 'Value'],
-                    [4, 'Type'],
-                    [5, 'Parent_Code'],
-                    [6, 'ETH_Address'],
-                    [7, 'Description'],
-                    [8, 'Status']
+                    [1, 'Game_Code'],
+                    [2, 'Value'],
+                    [3, 'Type'],
+                    [4, 'Parent_Code'],
+                    [5, 'ETH_Address'],
+                    [6, 'Description'],
+                    [7, 'Status']
                 ]
             },
             onDraw: function() {

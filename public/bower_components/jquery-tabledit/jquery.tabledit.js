@@ -228,6 +228,7 @@ if (typeof jQuery === 'undefined') {
                 // Update toolbar buttons.
                 if (settings.editButton) {
                     $tr.find('button.tabledit-save-button').hide();
+                    $tr.find('button.tabledit-cancel-button').hide();
                     $tr.find('button.tabledit-edit-button').removeClass('active').blur();
                 }
             },
@@ -253,6 +254,7 @@ if (typeof jQuery === 'undefined') {
                 if (settings.editButton) {
                     $tr.find('button.tabledit-edit-button').addClass('active');
                     $tr.find('button.tabledit-save-button').show();
+                    $tr.find('button.tabledit-cancel-button').show();
                 }
             }
         };
@@ -339,6 +341,7 @@ if (typeof jQuery === 'undefined') {
                 // Send AJAX request to server.
                 var ajaxResult = ajax(settings.buttons.delete.action).then(function() {
                     if (requestSuccess) {
+                        $('#show-note').html('Success!').addClass('danger');
                         Delete.reset(td);
                         $(td).parent('tr').remove();
                     }
@@ -428,7 +431,7 @@ if (typeof jQuery === 'undefined') {
                     // }, 1400);
                 }
 
-                if (typeof data['status'] != 'undefine') {
+                if (typeof data['status'] != 'undefined') {
                     requestSuccess  = data['status'];
                 }
 
@@ -475,22 +478,31 @@ if (typeof jQuery === 'undefined') {
              * @param {object} event
              */
             $table.on('click', 'button.tabledit-delete-button', function(event) {
-                if (event.handled !== true) {
-                    event.preventDefault();
+                var conf = confirm("Do you want to delete?");
 
-                    // Get current state before reset to view mode.
-                    var activated = $(this).hasClass('active');
-
+                if (conf) {
                     var $td = $(this).parents('td');
 
-                    Delete.reset($td);
-
-                    if (!activated) {
-                        Delete.confirm($td);
-                    }
-
-                    event.handled = true;
+                    Delete.submit($td);
+                } else {
+                    //
                 }
+                // if (event.handled !== true) {
+                //     event.preventDefault();
+
+                //     // Get current state before reset to view mode.
+                //     var activated = $(this).hasClass('active');
+
+                //     var $td = $(this).parents('td');
+
+                //     Delete.reset($td);
+
+                //     if (!activated) {
+                //         Delete.confirm($td);
+                //     }
+
+                //     event.handled = true;
+                // }
             });
 
             /**
@@ -538,6 +550,7 @@ if (typeof jQuery === 'undefined') {
                 if (event.handled !== true) {
                     event.preventDefault();
                     $('button.tabledit-save-button').removeAttr('disabled');
+                    // $(this).parent('div').addClass('hide');
 
                     var $button = $(this);
 
@@ -570,6 +583,21 @@ if (typeof jQuery === 'undefined') {
 
                     // Submit and update all columns.
                     Edit.submit($(this).parents('tr').find('td.tabledit-edit-mode'));
+
+                    event.handled = true;
+                }
+            });
+
+            /**
+             * Save edited row.
+             *
+             * @param {object} event
+             */
+            $table.on('click', 'button.tabledit-cancel-button', function(event) {
+                if (event.handled !== true) {
+                    event.preventDefault();
+                    // Reset all td's in edit mode.
+                    Edit.reset($table.find('td.tabledit-edit-mode'));
 
                     event.handled = true;
                 }
@@ -650,8 +678,8 @@ if (typeof jQuery === 'undefined') {
                     Edit.submit($td);
                     break;
                 case 27: // Escape.
-                    Edit.reset($td);
-                    Delete.reset($td);
+                    // Edit.reset($td);
+                    // Delete.reset($td);
                     break;
             }
         });
@@ -670,20 +698,28 @@ if (typeof jQuery === 'undefined') {
         }
 
         function showErorr(data) {
-            if (typeof data.code != 'undefine') {
+            if (typeof data.code != 'undefined') {
                 switch(data.code) {
                     case 600:
-                        alert('Parent code not exist!');
+                        $('#show-note').html('Parent code not exist!').addClass('danger');
                         break;
                     case 601:
-                        alert('Total percentage is not enough');
+                        $('#show-note').html('Total percentage is not enough!').addClass('danger');
                         break;
                     case 602:
-                        alert('Today, the ticket has out of');
+                        $('#show-note').html("Today's ticket has out of!").addClass('danger');
                         break;
                 }
             }
         }
+
+        //hidden note
+        $('table tr td input').keyup(function(){
+            if ($lastEditedRow != 'undefined') {
+                $lastEditedRow.removeClass(settings.dangerClass);
+            }
+            $('#show-note').html('');
+        });
 
         return this;
     };
