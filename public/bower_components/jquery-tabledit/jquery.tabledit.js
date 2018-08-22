@@ -663,7 +663,7 @@ if (typeof jQuery === 'undefined') {
 
         function addClass(classNames, action)  {
             if (action === 'edit') {
-                $lastEditedRow.addClass($classNames);
+                $lastEditedRow.addClass(classNames);
             }
         }
 

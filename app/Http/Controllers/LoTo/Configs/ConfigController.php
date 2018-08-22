@@ -26,7 +26,7 @@ class ConfigController extends Controller
     {
         $listConfig = [];
         /**
-         * [$method description]
+         * [$method description]test
          * @param [url] $[pathUrl] [<description>]
          * $url: example: user or user/get/id=..;
          * @param [array] $[json] [array data]
