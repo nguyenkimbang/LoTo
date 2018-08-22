@@ -354,17 +354,6 @@ if (typeof jQuery === 'undefined') {
                 // Disable identifier hidden input.
                 $(td).parents('tr').find('input.tabledit-identifier').attr('disabled', true);
 
-                // if (ajaxResult === false) {
-                //     return;
-                // }
-
-                // Add class "deleted" to row.
-                // $(td).parent('tr').addClass('tabledit-deleted-row');
-                // // Hide table row.
-                // $(td).parent('tr').addClass(settings.mutedClass).find('.tabledit-toolbar button:not(.tabledit-restore-button)').attr('disabled', true);
-                // // Show restore button.
-                // $(td).find('.tabledit-restore-button').show();
-                // // Set last deleted row.
                 $lastDeletedRow = $(td).parent('tr');
             },
             confirm: function(td) {
@@ -428,13 +417,6 @@ if (typeof jQuery === 'undefined') {
                 urlDefault = settings.eDelete.url;
             }
             var jqXHR = $.post(urlDefault, serialize, function(data, textStatus, jqXHR) {
-                if (action === settings.buttons.edit.action) {
-                    // $lastEditedRow.removeClass(settings.dangerClass).addClass(settings.warningClass);
-                    // setTimeout(function() {
-                        //$lastEditedRow.removeClass(settings.warningClass);
-                        // $table.find('tr.' + settings.warningClass).removeClass(settings.warningClass);
-                    // }, 1400);
-                }
 
                 if (typeof data['status'] != 'undefined') {
                     requestSuccess  = data['status'];
