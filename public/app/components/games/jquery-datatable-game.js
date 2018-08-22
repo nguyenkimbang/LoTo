@@ -35,7 +35,7 @@ $(document).ready(function() {
                 }
             ],
             
-            order: [ 1, 'asc' ],
+            order: [ 1, 'DESC' ],
 
             "initComplete": function(settings, json) {
                 loadEditable();

@@ -111,7 +111,7 @@ if (typeof jQuery === 'undefined') {
 
                         // Add elements to table cell.
                         $(this).html(span + input);
-                        $(this).addClass('tabledit-view-mode');
+                        // $(this).addClass('tabledit-view-mode');
 
                         // Add attribute "id" to table row.
                         $(this).parent('tr').attr(settings.rowIdentifier, $(this).text());
@@ -298,7 +298,9 @@ if (typeof jQuery === 'undefined') {
                             Mode.view(this);
                         });
 
-                        removeClass(settings.dangerClass, settings.buttons.edit.action);
+                        $lastEditedRow.removeClass(settings.dangerClass);
+
+                        // removeClassErr(settings.dangerClass, settings.buttons.edit.action);
                     } else {
                         $lastEditedRow.addClass(settings.dangerClass);
                         $('button.tabledit-save-button').removeAttr('disabled');
@@ -652,8 +654,9 @@ if (typeof jQuery === 'undefined') {
             }
         });
 
-        function removeClass(classNames, action)  {
+        function removeClassErr(classNames, action)  {
             if (action === 'edit') {
+                console.log($lastEditedRow);
                 $lastEditedRow.removeClass($classNames);
             }
         }

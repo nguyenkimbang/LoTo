@@ -22,18 +22,27 @@ $(document).ready(function() {
                 { data: "Status" },
                 {
                     "mRender": function(data, type, full) {
+                        var disable = '';
+                        if (typeof full != 'undifine' && typeof full.Type != 'undifine' && full.Type == 1) {
+                            disable = 'disabled'
+                        }
                         var html =
                         '<div class="tabledit-toolbar btn-toolbar" style="text-align: left;">'+
                            '<div class="btn-group btn-group-sm" style="float: none;">'+
-                               '<button type="button" class="tabledit-edit-button btn btn-sm btn-default" style="float: none;">'+
+                               '<button type="button" class="tabledit-edit-button btn btn-sm btn-default" style="float: none;"'+ disable +'>'+
                                    '<span class="glyphicon glyphicon-pencil"></span>'
-                               +'</button><button type="button" class="tabledit-delete-button btn btn-sm btn-default" style="float: none;">'+
+                               +'</button><button type="button" class="tabledit-delete-button btn btn-sm btn-default" style="float: none;"'+ disable +'>'+
                                    '<span class="glyphicon glyphicon-trash"></span>'+
                                '</button>'+
                            '</div>'+
-                           '<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">'+
-                           '<span class="glyphicon glyphicon-floppy-disk"></span>'+
-                           '</button>'+
+                           '<div class="btn-group btn-group-sm" style="float: none;">'+
+                               '<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">'+
+                                   '<span class="glyphicon glyphicon-floppy-disk"></span>'+
+                               '</button>'+
+                               '<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">'+
+                                   '<span class="glyphicon glyphicon-floppy-disk"></span>'+
+                               '</button>'
+                            '</div>'+
                            '<button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">Confirm</button>'+
                            '<button type="button" class="tabledit-restore-button btn btn-sm btn-warning" style="display: none; float: none;">Restore</button>'+
                        '</div>'
