@@ -20,7 +20,7 @@
         </script>
         <!--end::Web font -->
 
-        @include('../shared/users/head')
+        @include('shared/head')
 
         <link rel="shortcut icon" href="{!!Asset('images/users/media/img/logos/favicon.ico')!!}" />
     </head>
@@ -75,6 +75,6 @@
             </div>
         </div>
     </body>
-    @include('../shared/users/scripts')
+    @include('shared/scripts')
     {!!Html::script('app/components/users/userForm.js?v='.time())!!}
 </html>
