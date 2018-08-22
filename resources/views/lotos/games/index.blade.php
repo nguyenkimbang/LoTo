@@ -33,7 +33,7 @@ Game List Admin
 								<span>
 									<i class="la la-plus"></i>
 									<span>
-										Add User
+										Add Game
 									</span>
 								</span>
 							</a>

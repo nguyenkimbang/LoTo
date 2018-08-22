@@ -292,9 +292,10 @@ if (typeof jQuery === 'undefined') {
                 // Send AJAX request to server.
                 var ajaxResult = ajax(settings.buttons.edit.action).then(function() {
                     if (requestSuccess) {
+                    	$('#show-note').html('Success!').addClass('success');
                     	setTimeout(function() {
-                    		$('#show-note').html('Success!').addClass('success');
-                    	}, 500);
+                    		$('#show-note').html('').removeClass('success');
+                  10 	}, 500);
                     	
                         $(td).each(function() {
                             // Get input element.
@@ -350,9 +351,10 @@ if (typeof jQuery === 'undefined') {
                 // Send AJAX request to server.
                 var ajaxResult = ajax(settings.buttons.delete.action).then(function() {
                     if (requestSuccess) {
+                    	$('#show-note').html('Success!').addClass('success');
                         setTimeout(function() {
-                    		$('#show-note').html('Success!').addClass('success');
-                    	}, 500);
+                    		$('#show-note').html('').removeClass('success');
+                    	}, 1000);
                         Delete.reset(td);
                         $(td).parent('tr').remove();
                     }

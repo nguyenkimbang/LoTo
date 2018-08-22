@@ -12,7 +12,7 @@ $(document).ready(function() {
     var loadUserDataTable = function() {
         table = $('#game-table').DataTable( {
             dom: "Bfrtip",
-            scrollY: 300,
+            // scrollY: 300,
             paging: false,
             bFilter: false,
             ajax: window.baseUrl + "/admin/game/get-data",

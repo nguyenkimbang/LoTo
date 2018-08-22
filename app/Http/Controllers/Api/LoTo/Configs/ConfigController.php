@@ -91,7 +91,7 @@ class ConfigController extends Controller
                 'code' => isset($dataReq['Code']) ? $dataReq['Code'] : '',
                 'type' => isset($dataReq['Type']) ? $dataReq['Type'] : '',
                 'value' => isset($dataReq['Value']) ? $dataReq['Value'] : '',
-                'status' => isset($dataReq['Status']) ? $dataReq['Status'] : '',
+                'status' => isset($dataReq['Status']) ? 1 : 0,
                 'game_code' => isset($dataReq['Game_Code']) ? $dataReq['Game_Code'] : '',
                 'parent_code' => isset($dataReq['Parent_Code']) ? $dataReq['Parent_Code'] : '',
                 'ETH_address' => isset($dataReq['ETH_Address']) ? $dataReq['ETH_Address'] : '',

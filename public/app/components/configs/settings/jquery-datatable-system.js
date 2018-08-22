@@ -16,7 +16,7 @@ $.fn.dataTable.ext.errMode = 'none';
                 { data: "Description" },
                 {
                     "mRender": function(data, type, full) {
-                        console.log(full);
+                        
                         var disable = '';
                         if (typeof full != 'undifine' && typeof full.Type != 'undifine' && full.Type == 1) {
                             disable = 'disabled'

@@ -21,7 +21,6 @@ $(document).ready(function() {
                 { data: "Status" },
                 {
                     "mRender": function(data, type, full) {
-                        console.log(full);
                         var disable = '';
                         if (typeof full != 'undifine' && typeof full.Type != 'undifine' && full.Type == 1) {
                             disable = 'disabled'
