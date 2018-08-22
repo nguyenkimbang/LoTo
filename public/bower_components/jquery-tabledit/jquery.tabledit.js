@@ -550,7 +550,6 @@ if (typeof jQuery === 'undefined') {
                 if (event.handled !== true) {
                     event.preventDefault();
                     $('button.tabledit-save-button').removeAttr('disabled');
-                    // $(this).parent('div').addClass('hide');
 
                     var $button = $(this);
 

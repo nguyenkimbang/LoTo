@@ -35,8 +35,6 @@ $(document).ready(function() {
                                '</button><button type="button" class="tabledit-delete-button btn btn-sm btn-default" style="float: none;"'+ disable +'>'+
                                    '<span class="glyphicon glyphicon-trash"></span>'+
                                '</button>'+
-                           '</div>'+
-                           '<div class="btn-group btn-group-sm tabledit-save-button" style="float: none;">'+
                                '<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">'+
                                    '<span class="glyphicon glyphicon-floppy-disk"></span>'+
                                '</button>'+
