@@ -432,12 +432,14 @@ if (typeof jQuery === 'undefined') {
                     requestSuccess  = data['status'];
                 }
 
-                
+                //alert error
+                showErorr(data);
 
                 settings.onSuccess(data, textStatus, jqXHR);
             }, 'json');
 
             jqXHR.fail(function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR, textStatus, errorThrown);
                 if (action === settings.buttons.delete.action) {
                     $('button.tabledit-save-button').removeAttr('disabled');
                     $lastDeletedRow.removeClass(settings.mutedClass).addClass(settings.dangerClass);
@@ -664,6 +666,22 @@ if (typeof jQuery === 'undefined') {
         function addClass(classNames, action)  {
             if (action === 'edit') {
                 $lastEditedRow.addClass(classNames);
+            }
+        }
+
+        function showErorr(data) {
+            if (typeof data.code != 'undefine') {
+                switch(data.code) {
+                    case 600:
+                        alert('Parent code not exist!');
+                        break;
+                    case 601:
+                        alert('Total percentage is not enough');
+                        break;
+                    case 602:
+                        alert('Today, the ticket has out of');
+                        break;
+                }
             }
         }
 
