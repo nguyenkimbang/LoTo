@@ -105,9 +105,14 @@ if (typeof jQuery === 'undefined') {
                     var $td = $table.find('tbody td:nth-child(' + (parseInt(settings.columns.identifier[0]) + 1) + ')');
 
                     $td.each(function() {
+                        var style = '';
+                        if(typeof $(this).find('span').attr('style') != 'undefined') {
+                            style = $(this).find('span').attr('style');
+                        }
+
+                        var span = '<span class="tabledit-span tabledit-identifier" style="'+style+'"">' + $(this).text() + '</span>';
                         // Create hidden input with row identifier.
-                        var span = '<span class="tabledit-span tabledit-identifier">' + $(this).text() + '</span>';
-                        var input = '<input class="tabledit-input tabledit-identifier ' + settings.inputClass +'" type="text" name="' + settings.columns.identifier[1] + '" value="' + $(this).text() + '" style="display: none;" + disabled>';
+                        var input = '<input class="tabledit-input tabledit-identifier ' + settings.inputClass +'" type="text" name="' + settings.columns.identifier[1] + '" value="' + $(this).text() + '" style="display: none; '+style+'" + disabled>';
 
                         // Add elements to table cell.
                         $(this).html(span + input);
@@ -124,6 +129,11 @@ if (typeof jQuery === 'undefined') {
                         $td.each(function() {
                             // Get text of this cell.
                             var text = $(this).text();
+                            var style = '';
+
+                            if(typeof $(this).find('span').attr('style') != 'undefined') {
+                                style = $(this).find('span').attr('style');
+                            }
 
                             // Add pointer as cursor.
                             if (!settings.editButton) {
@@ -131,12 +141,14 @@ if (typeof jQuery === 'undefined') {
                             }
 
                             // Create span element.
-                            var span = '<span class="tabledit-span">' + text + '</span>';
+                            var span = '<span class="tabledit-span" style="'+style+'">' + text + '</span>';
+
+                            // var span = '<span class="tabledit-span">' + text + '</span>';
 
                             // Check if exists the third parameter of editable array.
                             if (typeof settings.columns.editable[i][2] !== 'undefined') {
                                 // Create select element.
-                                var input = '<select class="tabledit-input ' + settings.inputClass + '" name="' + settings.columns.editable[i][1] + '" style="display: none;" disabled>';
+                                var input = '<select class="tabledit-input ' + settings.inputClass + '" name="' + settings.columns.editable[i][1] + '" style="display: none; '+style+'" disabled>';
 
                                 // Create options for select element.
                                 $.each(jQuery.parseJSON(settings.columns.editable[i][2]), function(index, value) {
@@ -151,7 +163,7 @@ if (typeof jQuery === 'undefined') {
                                 input += '</select>';
                             } else {
                                 // Create text input element.
-                                var input = '<input class="tabledit-input ' + settings.inputClass + '" type="text" name="' + settings.columns.editable[i][1] + '" value="' + $(this).text() + '" style="display: none;" disabled>';
+                                var input = '<input class="tabledit-input ' + settings.inputClass + '" type="text" name="' + settings.columns.editable[i][1] + '" value="' + $(this).text() + '" style="display: none; '+style+'" disabled>';
                             }
 
                             // Add elements and class "view" to table cell.

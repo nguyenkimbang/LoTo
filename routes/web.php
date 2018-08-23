@@ -35,7 +35,8 @@ Route::middleware('is.login')->prefix('admin')->group(function () {
     Route::resource('config/setting', 'LoTo\Configs\Settings\SystemSettingController');
 
     //route config
-    Route::get('config/get-data', 'LoTo\Configs\ConfigController@getData');
+    Route::get('config/edit/{code}', 'LoTo\Configs\ConfigController@edit');
+    // Route::get('config/get-data', 'LoTo\Configs\ConfigController@getData');
     Route::resource('config', 'LoTo\Configs\ConfigController');
 
     //route game
@@ -47,8 +48,8 @@ Route::middleware('is.login')->prefix('admin')->group(function () {
     Route::resource('category/post', 'LoTo\Categories\Posts\PostController');
 
     //route category
-    Route::get('category/get-data-json', 'LoTo\Categories\CategoryController@getDataJson');
-    Route::get('category/get-data', 'LoTo\Categories\CategoryController@getData');
+    Route::get('category/edit/{code}', 'LoTo\Categories\CategoryController@edit');
+    // Route::get('category/get-data', 'LoTo\Categories\CategoryController@getData');
     Route::resource('category', 'LoTo\Categories\CategoryController');
 });
 

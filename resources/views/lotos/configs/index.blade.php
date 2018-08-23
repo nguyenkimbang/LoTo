@@ -45,38 +45,13 @@ Config
 				<div class="col-md-12 col-xs-12 show-note">
 					<div class="" id="show-note"></div>
 				</div>
-				<!--begin: Datatable -->
-				<table class="table table-striped- table-bordered table-hover table-checkable" id="config-table">
-					<thead>
-						<tr>
-							<th>
-								Code
-							</th>
-							<th>
-								Game_Code
-							</th>
-							<th>
-								Value
-							</th>
-							<th>
-								Type
-							</th>
-							<th>
-								Parent_Code
-							</th>
-							<th>
-								ETH_Address
-							</th>
-							<th>
-								Description
-							</th>
-							<th>
-								Status
-							</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-				</table>
+
+				<div style="clear: both;"></div>
+				<div class="m-portlet__body" style='padding-top:0'>
+			        <div class="m_datatable" id="config-table"></div>
+			        <!--end: Datatable -->
+			        <div id="m_datatable_reload"></div>
+			    </div>
 			</div>
 		</div>
 	</div>
@@ -85,5 +60,6 @@ Config
 
 @section('scripts')
 {!!Html::script('app/components/configs/jquery-datatable-config.js?v='.time())!!}
+{!!Html::script('app/components/configs/jquery-config.js?v='.time())!!}
 @stop
 

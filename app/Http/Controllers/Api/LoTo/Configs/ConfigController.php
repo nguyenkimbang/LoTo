@@ -72,6 +72,19 @@ class ConfigController extends Controller
     }
 
     /**
+     * [getData description]
+     * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
+     * @return [type] [description]
+     */
+    public function getData()
+    {
+
+        $url = config('app.api') . 'setting?mod=list_config';
+
+        return $this->getDataJson($url);
+    }
+
+    /**
      * [configDataReq description]
      * @author [nguyen kim bang] <[<nguyenkimbang208@gail.com>]>
      * @param  array  $dataReq [description]

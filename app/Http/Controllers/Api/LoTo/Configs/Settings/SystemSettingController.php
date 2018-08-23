@@ -49,7 +49,20 @@ class SystemSettingController extends Controller
 
         return new JsonResponse($this->postApi($url, $dataReq));
     }
+    
+    /**
 
+     * [getData description]
+     * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
+     * @return [type] [description]
+     */
+    public function getData()
+    {
+
+        $url = config('app.api') . 'setting?mod=system_settings';
+
+        return $this->getDataJson($url);
+    }
     /**
      * [remove description]
      * remove sytem setting

@@ -39,6 +39,20 @@ class GameController extends Controller
         return new JsonResponse($this->postApiHasFile($url, $dataReq));
     }
 
+    /**
+
+     * [getData description]
+     * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
+     * @return [type] [description]
+     */
+    public function getData()
+    {
+
+        $url = config('app.api') . 'game?mod=list_game_admin';
+
+        return $this->getDataJson($url);
+    }
+
     public function configDataReq($dataReq = [])
     {
         if (!empty($dataReq)) {

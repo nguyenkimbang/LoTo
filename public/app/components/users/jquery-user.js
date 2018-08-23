@@ -10,12 +10,15 @@ jQuery(document).ready(function()
      
     //khi thực hiện kích vào nút Login
     submit.click(function()
-    {       
-         
-        //lay tat ca du lieu trong form login
-        var data = $('form#config-form').serialize();
-        var url = window.baseUrl + '/api/loto/config';
+    {
+        var url = window.baseUrl + '/api/loto/category';
         var method = 'POST';
+
+        if ($(this).attr('id') == 'edit') {
+            url = window.baseUrl + '/api/loto/category/edit';
+        }
+        //lay tat ca du lieu trong form login
+        var data = $('form#category-form').serialize();
 
         //request data to server
         sumitData(data, url, method);
@@ -35,7 +38,7 @@ function sumitData(dataReq = [], url = '', method = "POST")
         if (typeof dataRep['status'] != 'undefine' && !dataRep['status']) {
             showErorr(dataRep);
         } else {
-            window.location.href = window.baseUrl + '/admin/config'
+            window.location.href = window.baseUrl + '/admin/category'
         }
     }
     });
@@ -84,15 +87,19 @@ function showErorr(data) {
                 $('#show-error-config').html("Today's ticket has out of!").addClass('danger');
                 $("html").scrollTop(0);
                 break;
-            case 400:
-                $('#show-error-config').html("This config existed!").addClass('danger');
+            case 605:
+                $('#show-error-config').html("This category existed!").addClass('danger');
+                $("html").scrollTop(0);
+                break;
+            case 606:
+                $('#show-error-config').html("The code not existed!").addClass('danger');
                 $("html").scrollTop(0);
                 break;
         }
     }
 }
 
-function removeConfig(code) {
+function removeUser(id) {
     swal({
         title: "Bạn có chắc chắn?",
         text: "Bạn muốn xóa trường đã chọn!",
@@ -104,11 +111,11 @@ function removeConfig(code) {
     }).then(function(e) {
         if (e.value == true) {
             $.ajax({
-                url: window.baseUrl + '/api/loto/config/remove',
+                url: window.baseUrl + '/api/loto/user/remove',
                 type: 'post',
                 dataType: 'json',
                 data: {
-                    Code: code
+                    id: id
                 },
                 // beforeSend: function() {
                 //     mApp.blockPage()

@@ -42,19 +42,16 @@ User List
 				</div>
 			</div>
 			<div class="m-portlet__body">
-				<!--begin: Datatable -->
-				<table id="user-table" class="table table-striped- table-bordered table-hover table-checkable" cellspacing="0" width="100%">
-					<thead>
-						<tr>
-			                <th>Username</th>
-			                <th>Fullname</th>
-			                <th>Rote Code</th>
-			                <th>Avatar</th>
-			                <th></th>
-			                
-			            </tr>
-					</thead>
-			    </table>
+				<div class="col-md-12 col-xs-12 show-note">
+					<div class="" id="show-note"></div>
+				</div>
+
+				<div style="clear: both;"></div>
+				<div class="m-portlet__body" style='padding-top:0'>
+			        <div class="m_datatable" id="user-table"></div>
+			        <!--end: Datatable -->
+			        <div id="m_datatable_reload"></div>
+			    </div>
 			</div>
 		
 		</div>
@@ -63,4 +60,5 @@ User List
 @stop
 @section('scripts')
 {!!Html::script('app/components/users/user-tabledit-jquery.js?v='.time())!!}
+{!!Html::script('app/components/users/jquery-user.js?v='.time())!!}
 @stop

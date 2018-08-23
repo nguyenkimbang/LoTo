@@ -21,7 +21,7 @@ jQuery(document).ready(function()
          
         //lay tat ca du lieu trong form login
         var data = $('form#form-login').serialize();
-        var url = 'api/user/login';
+        var url = 'api/loto/user/login';
         var method = 'POST';
 
         //request data to server

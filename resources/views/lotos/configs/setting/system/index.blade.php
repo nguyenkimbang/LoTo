@@ -42,23 +42,16 @@ Config | System Setting
 				</div>
 			</div>
 			<div class="m-portlet__body">
-				<!--begin: Datatable -->
-				<table class="table table-striped- table-bordered table-hover table-checkable" id="system-table">
-					<thead>
-						<tr>
-							<th>
-								Code
-							</th>
-							<th>
-								Value
-							</th>
-							<th>
-								Description
-							</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-				</table>
+				<div class="col-md-12 col-xs-12 show-note">
+					<div class="" id="show-note"></div>
+				</div>
+
+				<div style="clear: both;"></div>
+				<div class="m-portlet__body" style='padding-top:0'>
+			        <div class="m_datatable" id="setting-table"></div>
+			        <!--end: Datatable -->
+			        <div id="m_datatable_reload"></div>
+			    </div>
 			</div>
 		</div>
 	</div>
@@ -67,4 +60,5 @@ Config | System Setting
 
 @section('scripts')
 {!!Html::script('app/components/configs/settings/jquery-datatable-system.js?v='.time())!!}
+{!!Html::script('app/components/configs/settings/jquery-system-setting.js?v='.time())!!}
 @stop

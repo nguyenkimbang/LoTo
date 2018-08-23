@@ -19,6 +19,20 @@ class UserController extends Controller
     }
 
     /**
+
+     * [getData description]
+     * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
+     * @return [type] [description]
+     */
+    public function getData()
+    {
+
+        $url = config('app.api') . 'users?mod=get_info_user&id=1';
+
+        return $this->getDataJson($url);
+    }
+
+    /**
      * [login description]
      *
      * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
@@ -72,7 +86,7 @@ class UserController extends Controller
         //check sessioc started?
         $this->_startSession();
 
-        if (isset($resultRep['status']) && $resultRep['status'] && isset($_SESSION["token"])) {
+        if (isset($resultRep['status']) && $resultRep['status'] && !isset($_SESSION["token"])) {
             $token = 'LOGO ' . $resultRep['data'][0]['token'];
 
             $_SESSION["token"] = $token;

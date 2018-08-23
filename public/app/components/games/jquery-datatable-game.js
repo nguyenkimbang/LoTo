@@ -1,6 +1,122 @@
 var editor; // use a global for the submit and return data rendering in the examples
  
 $(document).ready(function() {
+
+    $("#game-table").mDatatable({
+        data: {
+            type: "remote",
+            source: {read: {url: window.baseUrl + '/api/loto/game/get-data'}},
+            pageSize: 10,
+            saveState: {cookie: !1, webstorage: !1},
+            serverPaging: !0,
+            serverFiltering: !0,
+            serverSorting: !0
+        },
+        layout: {theme: "default", class: "", scroll: !1, height: 'auto', footer: !1},
+        sortable: !0,
+        filterable: !1,
+        pagination: !0,
+        columns: [
+                {
+                    field: "Code",
+                    title: "Code"
+                }, {
+                    field: "Name",
+                    title: "Name",
+                }, {
+                    field: "Price",
+                    title: "Price",
+                }, {
+                    field: "Color",
+                    title: "Color"
+                }, {
+                    field: "Collection_No",
+                    title: "Collection No",
+
+                }, {
+                    field: "Picked_No",
+                    title: "Picked No",
+
+                }, {
+                    field: "Expire_Time",
+                    title: "Expire Time",
+
+                }, {
+                    field: "Draw_Time",
+                    title: "Draw Time",
+
+                }, {
+                    field: "Image",
+                    title: "Image",
+                    responsive: {
+                        visible: "lg"
+                    }
+
+                }, {
+                    field: "Status",
+                    title: "Status",
+                    field: "Status",
+                title: "Status",
+                template: function(e) {
+                    var r = {
+                        1: {
+                            title: "Pending",
+                            class: "m-badge--brand"
+                        },
+                        2: {
+                            title: "Delivered",
+                            class: " m-badge--metal"
+                        },
+                        3: {
+                            title: "Canceled",
+                            class: " m-badge--primary"
+                        },
+                        4: {
+                            title: "Success",
+                            class: " m-badge--success"
+                        },
+                        5: {
+                            title: "Info",
+                            class: " m-badge--info"
+                        },
+                        6: {
+                            title: "Danger",
+                            class: " m-badge--danger"
+                        },
+                        7: {
+                            title: "Warning",
+                            class: " m-badge--warning"
+                        }
+                    };
+                    return '<span class="m-badge ' + r[e.Status].class + ' m-badge--wide">' + r[e.Status].title + "</span>"
+                }
+
+                }, {
+                    field: "Actions",
+                    width: 110,
+                    title: "Actions",
+                    sortable: !1,
+                    overflow: "visible",
+                    template: function(e, a, i) {
+
+                        return `
+                        <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-edit-button">
+                            <i class="la la-edit"></i>
+                        </button>
+                        <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-delete-button"  onclick="removeGame('`+ e.Code +`')">
+                            <i class="la la-trash"></i>
+                        </button>
+                        <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-save-button" style="display: none; float: none;">
+                            <i class="la la-save"></i>
+                        </button>
+                        <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-cancel-button"  style="display: none; float: none;">
+                            <i class="la la-times"></i>
+                        </button>`
+                    }
+                }
+
+        ],
+    });
     
     // Activate the bubble editor on click of a table cell
     // $('#example').on( 'click', 'tbody td:not(:first-child)', function (e) {
@@ -91,7 +207,7 @@ $(document).ready(function() {
         })
     }
 
-    loadUserDataTable();
+    // loadUserDataTable();
 
     function createActionButton() {
         var disable = '';

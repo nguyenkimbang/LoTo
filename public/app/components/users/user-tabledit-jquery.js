@@ -1,6 +1,60 @@
-var editor; // use a global for the submit and return data rendering in the examples
- 
+
 $(document).ready(function() {
+
+    $("#user-table").mDatatable({
+        data: {
+            type: "remote",
+            source: {read: {url: window.baseUrl + '/api/loto/user/get-data'}},
+            pageSize: 10,
+            saveState: {cookie: !1, webstorage: !1},
+            serverPaging: !0,
+            serverFiltering: !0,
+            serverSorting: !0
+        },
+        layout: {theme: "default", class: "", scroll: !1, height: 'auto', footer: !1},
+        sortable: !0,
+        filterable: !1,
+        pagination: !0,
+        columns: [
+            {
+                    field: "ID",
+                    title: "ID"
+                }, {
+                    field: "Username",
+                    title: "Username",
+                }, {
+                    field: "Full_Name",
+                    title: "Full Name",
+                    responsive: {
+                        visible: "lg"
+                    }
+                }, {
+                    field: "Role_Code",
+                    title: "Role Code",
+                }, {
+                    field: "Avatar",
+                    title: "Avatar",
+
+                }, {
+                    field: "Actions",
+                    width: 110,
+                    title: "Actions",
+                    sortable: !1,
+                    overflow: "visible",
+                    template: function(e, a, i) {
+
+                        return `
+                        <a class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="View">
+                            <i class="la la-edit"></i>
+                        </a>
+                        <a class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="View " onclick="removeUser(`+ e.ID +`)">
+                            <i class="la la-trash"></i>
+                        </a>`
+                    }
+                }
+
+        ],
+    });
     
     // Activate the bubble editor on click of a table cell
     // $('#example').on( 'click', 'tbody td:not(:first-child)', function (e) {
@@ -78,7 +132,7 @@ $(document).ready(function() {
         })
     }
 
-    loadUserDataTable();
+    // loadUserDataTable();
 
     function createActionButton() {
         var disable = '';

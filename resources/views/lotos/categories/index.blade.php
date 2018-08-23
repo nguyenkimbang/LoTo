@@ -47,10 +47,10 @@ Category
 
 				<div style="clear: both;"></div>
 				<div class="m-portlet__body" style='padding-top:0'>
-				        <div class="m_datatable" id="category-table"></div>
-				        <!--end: Datatable -->
-				        <div id="m_datatable_reload"></div>
-				    </div>
+			        <div class="m_datatable" id="category-table"></div>
+			        <!--end: Datatable -->
+			        <div id="m_datatable_reload"></div>
+			    </div>
 
 			</div>
 			{{-- <div class="m-portlet m-portlet--mobile">
@@ -71,5 +71,5 @@ Category
 @section('scripts')
 
 {!!Html::script('app/components/lotos/categories/jquery-category-datatable.js?v='.time())!!}
-{!!Html::script('app/components/lotos/categories/test.js?v='.time())!!}
+{!!Html::script('app/components/lotos/categories/jquery-category.js?v='.time())!!}
 @stop

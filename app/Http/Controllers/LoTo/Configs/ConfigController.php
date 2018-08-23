@@ -22,6 +22,18 @@ class ConfigController extends Controller
         return view('lotos.configs.partials.add-config', compact('listParentCode'));
     }
 
+    public function edit($code)
+    {
+        $listParentCode = $this->getListParentCode($code);
+        
+        $urlConApi = config('app.api') . 'category?mod=get_category&code=' . $code;
+        $resultRep = $this->postApi($urlConApi, [], 'GET');
+
+        $category = isset($resultRep['data']) ? $resultRep['data'] : [];
+
+        return view('lotos.categories.partials.add-category', compact('listParentCode', 'category'));
+    }
+
     /**
      * [getData description]
      *

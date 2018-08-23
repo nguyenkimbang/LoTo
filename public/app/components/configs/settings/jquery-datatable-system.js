@@ -1,6 +1,63 @@
 
  
 $(document).ready(function() {
+
+jQuery(document).ready(function() {
+    $("#setting-table").mDatatable({
+        data: {
+            type: "remote",
+            source: {read: {url: window.baseUrl + '/api/loto/config/setting/get-data'}},
+            pageSize: 10,
+            saveState: {cookie: !1, webstorage: !1},
+            serverPaging: !0,
+            serverFiltering: !0,
+            serverSorting: !0
+        },
+        layout: {theme: "default", class: "", scroll: !1, height: 'auto', footer: !1},
+        sortable: !0,
+        filterable: !1,
+        pagination: !0,
+        columns: [
+                {
+                    field: "Code",
+                    title: "Code"
+                }, {
+                    field: "Value",
+                    title: "Value",
+                }, {
+                    field: "Description",
+                    title: "Description",
+                    responsive: {
+                        visible: "lg"
+                    }
+                }, {
+                    field: "Actions",
+                    width: 110,
+                    title: "Actions",
+                    sortable: !1,
+                    overflow: "visible",
+                    template: function(e, a, i) {
+
+                        return `
+                        <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-edit-button">
+                            <i class="la la-edit"></i>
+                        </button>
+                        <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-delete-button"  onclick="removeSetting('`+ e.Code +`')">
+                            <i class="la la-trash"></i>
+                        </button>
+                        <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-save-button" style="display: none; float: none;">
+                            <i class="la la-save"></i>
+                        </button>
+                        <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-cancel-button"  style="display: none; float: none;">
+                            <i class="la la-times"></i>
+                        </button>`
+                    }
+                }
+
+            ],
+        });
+    })
+
     var table;
 $.fn.dataTable.ext.errMode = 'none';
     var loadUserDataTable = function() {
@@ -92,6 +149,6 @@ $.fn.dataTable.ext.errMode = 'none';
         })
     }
 
-    loadUserDataTable();
+    // loadUserDataTable();
     
 } );

@@ -59,10 +59,10 @@ class UserController extends Controller
 
     public function login()
     {
-
         if ($this->hasLogin()) {
             return redirect('/dashboard');
         }
+        
         return view('auth.login');
     }
 
