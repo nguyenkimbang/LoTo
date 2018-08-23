@@ -12,7 +12,7 @@
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
@@ -20,12 +20,13 @@ Auth::routes();
 /**
  * user route
  */
+Route::get('test', 'HomeController@index');
 
 Route::get('login', 'LoTo\Users\UserController@login');
 Route::get('logout', 'LoTo\Users\UserController@logout');
 Route::middleware('is.login')->get('/dashboard', 'LoTo\DashboardController@index');
 Route::middleware('is.login')->prefix('admin')->group(function () {
-	//route User
+    //route User
     Route::get('user/get-data', 'LoTo\Users\UserController@getData');
     Route::resource('user', 'LoTo\Users\UserController');
 
@@ -40,7 +41,15 @@ Route::middleware('is.login')->prefix('admin')->group(function () {
     //route game
     Route::get('game/get-data', 'LoTo\Games\GameController@getData');
     Route::resource('game', 'LoTo\Games\GameController');
-});
 
+    //route post
+    Route::get('category/post/get-data/{id}', 'LoTo\Categories\Posts\PostController@getData');
+    Route::resource('category/post', 'LoTo\Categories\Posts\PostController');
+
+    //route category
+    Route::get('category/get-data-json', 'LoTo\Categories\CategoryController@getDataJson');
+    Route::get('category/get-data', 'LoTo\Categories\CategoryController@getData');
+    Route::resource('category', 'LoTo\Categories\CategoryController');
+});
 
 // Route::post('api/user/login', 'Api\Users\UserController@login');

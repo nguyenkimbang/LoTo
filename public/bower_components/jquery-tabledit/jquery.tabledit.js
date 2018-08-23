@@ -695,13 +695,20 @@ if (typeof jQuery === 'undefined') {
             if (typeof data.code != 'undefined') {
                 switch(data.code) {
                     case 600:
-                        $('#show-note').html('Parent code not exist!').addClass('danger');
+                        $('#show-error-config').html('Parent code not exist!').addClass('danger');
+                        $("html").scrollTop(0);
                         break;
                     case 601:
-                        $('#show-note').html('Total percentage is not enough!').addClass('danger');
+                        $('#show-error-config').html('Total percentage is not enough!').addClass('danger');
+                        $("html").scrollTop(0);
                         break;
                     case 602:
-                        $('#show-note').html("Today's ticket has out of!").addClass('danger');
+                        $('#show-error-config').html("Today's ticket has out of!").addClass('danger');
+                        $("html").scrollTop(0);
+                        break;
+                    case 606:
+                        $('#show-error-config').html("The code not existed!").addClass('danger');
+                        $("html").scrollTop(0);
                         break;
                 }
             }

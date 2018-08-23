@@ -34,4 +34,10 @@ Route::prefix('loto')->group(function () {
 
     //rout game
     Route::resource('game', 'Api\LoTo\Games\GameController');
+
+    //route config setting
+    Route::post('category/get-data-json', 'Api\LoTo\Categories\CategoryController@getDataJson');
+    Route::post('category/edit', 'Api\LoTo\Categories\CategoryController@edit');
+    Route::post('category/remove', 'Api\LoTo\Categories\CategoryController@remove');
+    Route::resource('category', 'Api\LoTo\Categories\CategoryController');
 });

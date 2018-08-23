@@ -12,10 +12,6 @@ use Illuminate\Http\Request;
  */
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->_setToken();
-    }
 
     public function store(Request $request)
     {
@@ -74,9 +70,7 @@ class UserController extends Controller
         $resultRep = $this->postApi($url, $dataReq);
 
         //check sessioc started?
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
+        $this->_startSession();
 
         if (isset($resultRep['status']) && $resultRep['status'] && isset($_SESSION["token"])) {
             $token = 'LOGO ' . $resultRep['data'][0]['token'];

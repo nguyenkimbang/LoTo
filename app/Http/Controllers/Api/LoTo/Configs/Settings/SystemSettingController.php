@@ -10,12 +10,6 @@ use Illuminate\Http\Request;
  */
 class SystemSettingController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->_setToken();
-    }
-
     /**
      * [store description]
      * add new system setting

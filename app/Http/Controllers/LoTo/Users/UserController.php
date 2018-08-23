@@ -12,12 +12,6 @@ use Illuminate\Http\JsonResponse;
  */
 class UserController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->_setToken();
-    }
-
     /**
      * [index description]
      * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>

@@ -10,11 +10,6 @@ use Illuminate\Http\JsonResponse;
 class ConfigController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->_setToken();
-    }
-
     public function index()
     {
         return view('lotos.configs.index');
@@ -27,25 +22,17 @@ class ConfigController extends Controller
         return view('lotos.configs.partials.add-config', compact('listParentCode'));
     }
 
+    /**
+     * [getData description]
+     *
+     * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
+     * @return [type] [description]
+     */
     public function getData()
     {
-        $listConfig = [];
-        /**
-         * [$method description]
-         * @param [url] $[pathUrl] [<description>]
-         * $url: example: user or user/get/id=..;
-         * @param [array] $[json] [array data]
-         * @param [method] $[method] [POST, DELETE, PUT]
-         * @var string
-         */
         $url = config('app.api') . 'setting?mod=list_config';
-        $json = [
-        ];
 
-        //call postApi function from parent Controller
-        $resultRep = $this->postApi($url, $json, "GET");
-
-        return new JsonResponse($resultRep);
+        return new JsonResponse($this->getListData($url));
     }
 
     /**

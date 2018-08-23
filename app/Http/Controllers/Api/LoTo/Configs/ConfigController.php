@@ -11,11 +11,6 @@ use Illuminate\Http\Request;
 class ConfigController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->_setToken();
-    }
-
     /**
      * [store description]
      * @author [nguyen kim bang] <[<nguyenkimbang208@gmail.com>]>

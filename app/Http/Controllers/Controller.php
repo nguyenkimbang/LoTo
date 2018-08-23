@@ -57,6 +57,8 @@ class Controller extends BaseController
      */
     public function postApi($url, $json, $method = 'POST')
     {
+        $this->_setToken();
+
         $client = new \GuzzleHttp\Client(['base_uri' => config('app.api')]);
 
         if ($method == 'POST' || $method == 'PUT') {
@@ -82,6 +84,8 @@ class Controller extends BaseController
      */
     public function postApiHasFile($url, $data)
     {
+        $this->_setToken();
+
         $client = new \GuzzleHttp\Client(['base_uri' => config('app.api')]);
         $res = $client->request('POST', $url, [
             'headers' => array('Authorization' => $this->token),
@@ -89,5 +93,31 @@ class Controller extends BaseController
         ]);
         $check_data = json_decode($res->getBody()->getContents(), true);
         return $check_data;
+    }
+
+    /**
+     * [_startSession description]
+     *
+     * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
+     * @return [type] [description]
+     */
+    public function _startSession()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
+    /**
+     * [getListCategory description]
+     *
+     * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
+     * @return [type] list category[description]
+     */
+    public function getListData($urlConApi)
+    {
+        return $this->postApi($urlConApi, [], "GET");
+
+        return [];
     }
 }
