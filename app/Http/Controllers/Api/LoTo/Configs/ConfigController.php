@@ -51,8 +51,7 @@ class ConfigController extends Controller
     {
 
         $url = config('app.api') . 'setting?mod=list_config';
-        $json = [
-        ];
+        $json = [];
 
         $resultRep = $this->postApi($url, $json, "GET");
 

@@ -5,30 +5,29 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 
 /**
- * 
+ *
  */
 class ConfigController extends Controller
 {
 
-	public function __construct()
+    public function __construct()
     {
         $this->_setToken();
     }
 
-	
-	public function index()
+    public function index()
     {
         return view('lotos.configs.index');
     }
 
     public function create()
-	{
+    {
         $listParentCode = $this->getListParentCode();
 
-		return view('lotos.configs.partials.add-config', compact('listParentCode'));
-	}
+        return view('lotos.configs.partials.add-config', compact('listParentCode'));
+    }
 
-	public function getData()
+    public function getData()
     {
         $listConfig = [];
         /**
@@ -44,7 +43,7 @@ class ConfigController extends Controller
         ];
 
         //call postApi function from parent Controller
-        $resultRep = $this->postApi($url, $json, "GET");       
+        $resultRep = $this->postApi($url, $json, "GET");
 
         return new JsonResponse($resultRep);
     }
@@ -64,7 +63,7 @@ class ConfigController extends Controller
         $json = [];
 
         //call postApi function from parent Controller
-        $resultRep = $this->postApi($url, $json, "GET");  
+        $resultRep = $this->postApi($url, $json, "GET");
 
         $listParentCode = [];
         if ($resultRep['data']) {
@@ -73,7 +72,7 @@ class ConfigController extends Controller
                 foreach ($resultRep['data'] as $childKey => $parentCode) {
                     if ($code['Code'] != $parentCode['Code']) {
                         if ($parentCode['Parent_Code'] == $code['Code']) {
-                            $totalPecent += $parentCode['Value']; 
+                            $totalPecent += $parentCode['Value'];
                         }
                     }
                 }
