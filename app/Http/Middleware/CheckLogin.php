@@ -15,7 +15,11 @@ class CheckLogin
      */
     public function handle($request, Closure $next)
     {
-        if (!\Cache::has('token_login')) {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if (!isset($_SESSION["token"])) {
             return redirect('/login');
         }
         return $next($request);

@@ -2,8 +2,8 @@
 namespace App\Http\Controllers\LoTo\Users;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 use App\User;
+use Illuminate\Http\JsonResponse;
 
 //GuzzleException
 
@@ -65,6 +65,7 @@ class UserController extends Controller
 
     public function login()
     {
+
         if ($this->hasLogin()) {
             return redirect('/dashboard');
         }
@@ -73,8 +74,12 @@ class UserController extends Controller
 
     public function logout()
     {
-        if ($this->hasLogin()) {
-            \Cache::forget('token_login');
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if (isset($_SESSION["token"])) {
+            unset($_SESSION["token"]);
         }
 
         return redirect('/login');

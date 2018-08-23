@@ -21,8 +21,12 @@ class Controller extends BaseController
      */
     public function _setToken()
     {
-        if (\Cache::has('token_login')) {
-            $this->token = \Cache::get('token_login');
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if (isset($_SESSION["token"])) {
+            $this->token = $_SESSION["token"];
         }
     }
 
@@ -33,7 +37,10 @@ class Controller extends BaseController
      */
     public function hasLogin()
     {
-        if (\Cache::has('token_login')) {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (isset($_SESSION["token"])) {
             return true;
         }
 
