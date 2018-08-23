@@ -46,10 +46,6 @@ class SystemSettingController extends Controller
         //call postAPI_v2 function from parent Controller
         $resultRep = $this->postApi($urlConApi, $json, "GET");
 
-        // if (isset($resultRep['data'])) {
-        //     config(['app.list-setting' => $resultRep['data']]);
-        // }
-
         return new JsonResponse($resultRep);
     }
 }

@@ -87,7 +87,7 @@ class SystemSettingController extends Controller
 
         //call postAPI_v2 function from parent Controller
         $resultRep = $this->postApi($urlConApi, $json, "GET");
-       
+
         if (isset($resultRep['data'])) {
             foreach ($resultRep['data'] as $key => $value) {
                 if ($code == $value['Code']) {
