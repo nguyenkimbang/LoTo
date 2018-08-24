@@ -28,11 +28,6 @@ class ConfigController extends Controller
 
         $listParentCode = $this->getListParentCode($code, $config);
 
-        $urlConApi = config('app.api') . 'category?mod=get_category&code=' . $code;
-        $resultRep = $this->postApi($urlConApi, [], 'GET');
-
-        $category = isset($resultRep['data']) ? $resultRep['data'] : [];
-
         return view('lotos.configs.partials.add-config', compact('listParentCode', 'config'));
     }
 
@@ -57,7 +52,7 @@ class ConfigController extends Controller
      * @param  [type] $data [description]
      * @return [type]       [description]
      */
-    public function getListParentCode($code = null, &$config)
+    public function getListParentCode($code = null, &$config = [])
     {
 
         $url = config('app.api') . 'setting?mod=list_config';
@@ -67,7 +62,7 @@ class ConfigController extends Controller
         if (isset($result['data'])) {
             foreach ($result['data'] as $key => $parentCode) {
 
-                if (!is_null($code) && $code != $parentCode['Code']) {
+                if ($code != $parentCode['Code']) {
                     $listParentCode[] = $parentCode['Code'];
                 }
 

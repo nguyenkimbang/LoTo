@@ -53,7 +53,7 @@ class GameController extends Controller
         return $this->getDataJson($url);
     }
 
-    public function configDataReq($dataReq = [])
+    public function configDataReq($dataReq = [], $mod = 'update_game')
     {
         if (!empty($dataReq)) {
             $data = [
@@ -62,40 +62,40 @@ class GameController extends Controller
                     "contents" => (isset($dataReq['mod'])) ? $dataReq['mod'] : '',
                 ],
                 [
-                    "name" => "code",
-                    "contents" => (isset($dataReq['code'])) ? $dataReq['code'] : '',
+                    "name" => "Code",
+                    "contents" => (isset($dataReq['Code'])) ? $dataReq['Code'] : '',
                 ],
                 [
-                    "name" => "picked_no",
-                    "contents" => (isset($dataReq['picked_no'])) ? $dataReq['picked_no'] : '',
+                    "name" => "Picked_No",
+                    "contents" => (isset($dataReq['Picked_No'])) ? $dataReq['Picked_No'] : '',
                 ],
                 [
-                    "name" => "collection_no",
-                    "contents" => (isset($dataReq['collection_no'])) ? $dataReq['collection_no'] : '',
+                    "name" => "Collection_No",
+                    "contents" => (isset($dataReq['Collection_No'])) ? $dataReq['Collection_No'] : '',
                 ],
                 [
-                    "name" => "name",
-                    "contents" => (isset($dataReq['name'])) ? $dataReq['name'] : '',
+                    "name" => "Name",
+                    "contents" => (isset($dataReq['Name'])) ? $dataReq['Name'] : '',
                 ],
                 [
-                    "name" => "price",
-                    "contents" => (isset($dataReq['price'])) ? $dataReq['price'] : '',
+                    "name" => "Price",
+                    "contents" => (isset($dataReq['Price'])) ? $dataReq['Price'] : '',
                 ],
                 [
-                    "name" => "color",
-                    "contents" => (isset($dataReq['color'])) ? $dataReq['color'] : '',
+                    "name" => "Color",
+                    "contents" => (isset($dataReq['Color'])) ? $dataReq['Color'] : '',
                 ],
                 [
-                    "name" => "expire_time",
-                    "contents" => (isset($dataReq['expire_time'])) ? $dataReq['expire_time'] : '',
+                    "name" => "Expire_Time",
+                    "contents" => (isset($dataReq['Expire_Time'])) ? $dataReq['Expire_Time'] : '',
                 ],
                 [
-                    "name" => "draw_time",
-                    "contents" => (isset($dataReq['draw_time'])) ? $dataReq['draw_time'] : '',
+                    "name" => "Draw_Time",
+                    "contents" => (isset($dataReq['Draw_Time'])) ? $dataReq['Draw_Time'] : '',
                 ],
                 [
-                    "name" => "status",
-                    "contents" => (isset($dataReq['status'])) ? $dataReq['status'] : '',
+                    "name" => "Status",
+                    "contents" => (isset($dataReq['Status'])) ? $dataReq['Status'] : '',
                 ],
             ];
             return $data;

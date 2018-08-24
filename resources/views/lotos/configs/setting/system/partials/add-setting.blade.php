@@ -36,7 +36,6 @@ Config | Create Setting
 				@else
 				   <input class="form-control m-input m-input--air" type="text" placeholder="{{ __('Ex: PR1') }}" name="Code" autocomplete="off" required>
 				@endif
-				<input class="form-control m-input m-input--air" type="text" placeholder="{{ __('')}}" name="Code" required>
 			</div>
 			<div class="form-group m-form__group row">
 				<label for="example-text-input">

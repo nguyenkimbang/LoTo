@@ -45,8 +45,8 @@ Route::middleware('is.login')->prefix('admin')->group(function () {
     Route::resource('game', 'LoTo\Games\GameController');
 
     //route post
-    Route::get('category/post/get-data/{id}', 'LoTo\Categories\Posts\PostController@getData');
-    Route::resource('category/post', 'LoTo\Categories\Posts\PostController');
+    Route::get('post/edit/{id}', 'LoTo\Categories\Posts\PostController@edit');
+    Route::resource('post', 'LoTo\Categories\Posts\PostController');
 
     //route category
     Route::get('category/edit/{code}', 'LoTo\Categories\CategoryController@edit');

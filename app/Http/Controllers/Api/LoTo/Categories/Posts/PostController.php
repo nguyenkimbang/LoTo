@@ -49,6 +49,13 @@ class PostController extends Controller
         return new JsonResponse($this->postApi($url, $dataReq, 'PUT'));
     }
 
+    public function getData()
+    {
+        $url = config('app.api') . 'category?mod=list_post';
+
+        return $this->getDataJson($url);
+    }
+
     /**
      * [remove description]
      *

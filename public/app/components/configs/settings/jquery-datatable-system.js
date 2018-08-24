@@ -39,9 +39,13 @@ jQuery(document).ready(function() {
                     template: function(e, a, i) {
 
                         return `
-                        <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-edit-button">
+                        <a href="`+window.baseUrl +`/admin/config/setting/edit/`+e.Code+`" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-edit-button">
                             <i class="la la-edit"></i>
-                        </button>
+                        </a>`+
+                        // <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-edit-button">
+                        //     <i class="la la-edit"></i>
+                        // </button>
+                        `
                         <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-delete-button"  onclick="removeSetting('`+ e.Code +`')">
                             <i class="la la-trash"></i>
                         </button>

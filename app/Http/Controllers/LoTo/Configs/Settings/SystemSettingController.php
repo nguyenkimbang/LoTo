@@ -26,6 +26,15 @@ class SystemSettingController extends Controller
         return view('lotos.configs.setting.system.partials.add-setting');
     }
 
+    public function edit($code)
+    {
+        $config = [];
+
+        $setting = $this->getSetting($code);
+
+        return view('lotos.configs.setting.system.partials.add-setting', compact('setting'));
+    }
+
     /**
      * [getDataSystem description]
      * get list system setting
@@ -38,5 +47,31 @@ class SystemSettingController extends Controller
         $urlConApi = config('app.api') . 'setting?mod=system_settings';
 
         return new JsonResponse($this->getListData($urlConApi));
+    }
+
+    /**
+     * [getListParentCode description]
+     * get list config with total percent form childs < 100
+     *
+     * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
+    public function getSetting($code = null)
+    {
+
+        $urlConApi = config('app.api') . 'setting?mod=system_settings';
+        $result = $this->getListData($urlConApi);
+
+        if (isset($result['data'])) {
+            foreach ($result['data'] as $key => $parentCode) {
+
+                if ($code == $parentCode['Code']) {
+                    return $parentCode;
+                }
+            }
+        }
+
+        return [];
     }
 }
