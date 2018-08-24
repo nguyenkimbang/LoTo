@@ -39,6 +39,7 @@ Route::prefix('loto')->group(function () {
     Route::resource('game', 'Api\LoTo\Games\GameController');
 
     //route post
+    Route::post('post/edit', 'Api\LoTo\Categories\Posts\PostController@edit');
     Route::post('post/get-data', 'Api\LoTo\Categories\Posts\PostController@getData');
     Route::resource('post', 'Api\LoTo\Categories\Posts\PostController');
     //route config setting

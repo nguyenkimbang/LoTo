@@ -15,17 +15,14 @@ jQuery(document).ready(function() {
             pagination: !0,
             columns: [
                 {
-                    field: "Code",
-                    title: "Code"
+                    field: "ID",
+                    title: "ID"
                 }, {
-                    field: "Title_Seo",
-                    title: "Title Seo",
+                    field: "Title",
+                    title: "Title",
                 }, {
-                    field: "Parent_Code",
-                    title: "Parent Code"
-                }, {
-                    field: "Description",
-                    title: "Description",
+                    field: "Category_Code",
+                    title: "Category_Code",
                     responsive: {
                         visible: "lg"
                     }

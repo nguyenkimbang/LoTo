@@ -11,14 +11,22 @@ jQuery(document).ready(function()
     //khi thực hiện kích vào nút Login
     submit.click(function()
     {
-        var url = window.baseUrl + '/api/loto/category';
+
+        console.log(111);
+        return;
+
+        if (!$('form#user-form').valid()) {
+            return;
+        }
+
+        var url = window.baseUrl + '/api/loto/user';
         var method = 'POST';
 
         if ($(this).attr('id') == 'edit') {
-            url = window.baseUrl + '/api/loto/category/edit';
+            url = window.baseUrl + '/api/loto/user/edit';
         }
         //lay tat ca du lieu trong form login
-        var data = $('form#category-form').serialize();
+        var data = $('form#user-form').serialize();
 
         //request data to server
         sumitData(data, url, method);

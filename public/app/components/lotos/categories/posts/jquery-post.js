@@ -11,14 +11,26 @@ jQuery(document).ready(function()
     //khi thực hiện kích vào nút Login
     submit.click(function()
     {       
-        if (!$('form#post-form').value()) {
+        if (!$('form#post-form').valid()) {
             return;
         }
 
+        var data = {
+            'ID' : $('form#post-form').find('input[name="ID"]').val(),
+            'Title' : $('form#post-form').find('input[name="Title"]').val(),
+            'Content': CKEDITOR.instances['ckediter'].getData(),
+            'Category_Code': $('form#post-form').find('select[name="Category_Code"]').val()
+        };
+
         //lay tat ca du lieu trong form login
-        var data = $('form#post-form').serialize() + '&Content=' + CKEDITOR.instances['ckediter'].getData();
+        // var data = $('form#post-form').serialize() + '&Content=' + CKEDITOR.instances['ckediter'].getData();
         var url = window.baseUrl + '/api/loto/post';
         var method = 'POST';
+
+        if ($(this).attr('id') == 'edit') {
+            url = window.baseUrl + '/api/loto/post/edit';
+        }
+
 
         //request data to server
         sumitData(data, url, method);

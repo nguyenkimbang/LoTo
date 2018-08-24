@@ -53,7 +53,7 @@ class PostController extends Controller
 
     public function getData()
     {
-        $url = config('app.api') . 'category?mod=list_post';
+        $url = config('app.api') . 'posts?mod=list_post';
 
         return $this->getDataJson($url);
     }

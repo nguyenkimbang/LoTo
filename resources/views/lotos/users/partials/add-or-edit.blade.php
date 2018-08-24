@@ -19,7 +19,7 @@ User | Add
 							Create Account
 						</h3>
 					</div>
-					<form class="m-login__form m-form" action="">
+					<form class="m-login__form m-form" action="" id="user-form">
 						<div class="form-group m-form__group">
 							<input class="form-control m-input" type="text" placeholder="{{ __('Username') }}" name="Username" >
 							@if ($errors->has('Username'))
@@ -55,7 +55,7 @@ User | Add
                             @endif
 						</div>
 						<div class="m-login__form-action">
-							<button id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn">
+							<button id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn" type="submit">
 								{{ __('Sign up') }}
 							</button>
 						</div>
@@ -65,4 +65,7 @@ User | Add
 		</div>
 	</div>
 </div>
+@stop
+@section('scripts')
+{!!Html::script('app/components/users/jquery-user.js?v='.time())!!}
 @stop

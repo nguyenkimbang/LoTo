@@ -35,6 +35,26 @@ class PostController extends Controller
     }
 
     /**
+     * [create description]
+     *
+     * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
+     * @return [type] [description]
+     */
+    public function edit($id)
+    {
+
+        $listCategory = $this->getListParentCode();
+
+        $urlConApi = config('app.api') . 'posts?mod=get_post&id=' . $id;
+
+        $resultRep = $this->postApi($urlConApi, [], 'GET');
+
+        $post = isset($resultRep['data']) ? $resultRep['data'] : [];
+
+        return view('lotos.categories.posts.partials.add-post', compact('post', 'listCategory'));
+    }
+
+    /**
      * [getData description]
      * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
      * @return [type] [description]

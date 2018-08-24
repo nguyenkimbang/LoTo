@@ -7,7 +7,7 @@
 				<div class="m-stack m-stack--ver m-stack--general">
 					<div class="m-stack__item m-stack__item--middle m-brand__logo">
 						<a href="{{URL::to('/dashboard')}}" class="m-brand__logo-wrapper">
-							<img alt="" src="{!!Asset('images/users/media/img/logos/logo_default_dark.png')!!}"/>
+							<img alt="eth" src="http://api.bookingapp.vn/api/uploads/1534405350159-icon.png" width="50%" />
 						</a>
 					</div>
 					<div class="m-stack__item m-stack__item--middle m-brand__tools">

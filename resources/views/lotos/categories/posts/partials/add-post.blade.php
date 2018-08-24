@@ -55,26 +55,34 @@ Config | Create
 										<label class="">
 											Title:
 										</label>
-										<input type="text" class="form-control m-input" placeholder="Enter Title" name="Title">
+										@if(isset($post) && isset($post['Title']))
+											<input type="text" class="form-control m-input" placeholder="Enter Title" name="Title" value="{{$post['Title']}}" required="">
+										@else
+											<input type="text" class="form-control m-input" placeholder="Enter Title" name="Title" required="">
+										@endif
 									</div>
 									<div class="form-group m-form__group">
 										<label class="">
 											Content
 										</label>
-										<textarea class="form-control m-input" name="Content" id="ckediter"></textarea>
+										@if(isset($post) && isset($post['Content']))
+											<textarea class="form-control m-input" name="Content" id="ckediter">{!!$post['Content']!!}</textarea>
+										@else
+											<textarea class="form-control m-input" name="Content" id="ckediter">{!!$post['Content']!!}</textarea>
+										@endif
 									</div>
 									<div class="form-group m-form__group">
 										<label class="">
 											Category Code
 										</label>
-										@if(isset($config) && isset($config['Parent_Code']))
-											<select class="form-control m-input" name="Parent_Code" required>
-												@foreach($categories as $key => $category)
-												<option value="{{$parentCode}}" {{$category['Parent_Code'] == $parentCode ? 'selected="selected"' : ''}}>{{$parentCode}}</option>
+										@if(isset($post) && isset($post['Category_Code']))
+											<select class="form-control m-input" name="Category_Code" required>
+												@foreach($listCategory as $key => $category)
+												<option value="{{$category}}" {{$post['Category_Code'] == $category ? 'selected="selected"' : ''}}>{{$category}}</option>
 												@endforeach
 											</select>
 										@else
-											<select class="form-control m-input" name="Parent_Code" required>
+											<select class="form-control m-input" name="Category_Code" required>
 												<option value="">Choose category...</option>
 												@foreach($listCategory as $key => $category)
 												<option value="{{$category}}">{{$category}}</option>
@@ -83,10 +91,14 @@ Config | Create
 										@endif
 									</div>
 
+									@if(isset($post) && isset($post['ID']))
+									<input type="hidden" name="ID" value="{{$post['ID']}}">
+									@endif
+
 									</div>
 									<div class="m-portlet__foot m-portlet__foot--fit">
 										<div class="m-form__actions" style="text-align: right;">
-											<button type="submit" class="btn btn-success" id="{{isset($category['Code']) ? 'edit' : 'add'}}" style="margin-right: 8px">
+											<button type="submit" class="btn btn-success" id="{{isset($post['ID']) ? 'edit' : 'add'}}" style="margin-right: 8px">
 											Submit
 											</button>
 											<button type="reset" class="btn btn-default">
