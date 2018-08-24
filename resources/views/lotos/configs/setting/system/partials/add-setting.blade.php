@@ -30,25 +30,39 @@ Config | Create Setting
 				<label for="example-text-input">
 					Code
 				</label>
+				@if(isset($setting) && isset($setting['Code']))
+					<div class="form-control m-input m-input--air">{{$setting['Code']}}</div>
+					<input class="form-control m-input m-input--air" type="hidden" placeholder="{{ __('Ex: PR1') }}" name="Code" required value="{{$setting['Code']}}">
+				@else
+				   <input class="form-control m-input m-input--air" type="text" placeholder="{{ __('Ex: PR1') }}" name="Code" autocomplete="off" required>
+				@endif
 				<input class="form-control m-input m-input--air" type="text" placeholder="{{ __('')}}" name="Code" required>
 			</div>
 			<div class="form-group m-form__group row">
 				<label for="example-text-input">
 					Value
 				</label>
-				<input class="form-control m-input m-input--air" type="text" placeholder="{{ __('')}}" name="Value" required>
+				@if(isset($setting) && isset($setting['Value']))
+					<input class="form-control m-input m-input--air" type="text" placeholder="{{ __('') }}" name="Value" autocomplete="off" required value="{{$setting['Value']}}">
+				@else
+				   <input class="form-control m-input m-input--air" type="text" placeholder="{{ __('') }}" name="Value" autocomplete="off" required>
+				@endif
 			</div>
 
 			<div class="form-group m-form__group row">
 				<label for="example-text-input">
 					Description
 				</label>
-				<textarea class="form-control m-input m-input--air" placeholder="{{ __('') }}" name="Description" required></textarea>
+				@if(isset($setting) && isset($setting['Description']))
+					<textarea class="form-control m-input m-input--air" placeholder="{{ __('') }}" name="Description" required>{{$setting['Description']}}</textarea>
+				@else
+				   <textarea class="form-control m-input m-input--air" placeholder="{{ __('') }}" name="Description" required></textarea>
+				@endif
 			</div>
 
 			<div class="m-portlet__foot m-portlet__foot--fit">
 				<div class="m-form__actions" style="text-align: right;">
-					<button type="submit" class="btn btn-success">
+					<button type="submit" class="btn btn-success"  id="{{isset($setting['Code']) ? 'edit' : 'add'}}">
 						Submit
 					</button>
 					<button type="reset" class="btn btn-default">

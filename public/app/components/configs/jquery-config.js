@@ -10,12 +10,20 @@ jQuery(document).ready(function()
      
     //khi thực hiện kích vào nút Login
     submit.click(function()
-    {       
+    {
          
         //lay tat ca du lieu trong form login
         var data = $('form#config-form').serialize();
         var url = window.baseUrl + '/api/loto/config';
         var method = 'POST';
+
+        if ($(this).attr('id') == 'edit') {
+            url = window.baseUrl + '/api/loto/category/edit';
+        }
+
+        if (!$('form#config-form').valid()) {
+            return;
+        }
 
         //request data to server
         sumitData(data, url, method);

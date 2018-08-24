@@ -52,14 +52,14 @@
 
                                 <!-- start input Email --->
                                 <div class="form-group m-form__group">
-                                    <input class="form-control m-input {{ $errors->has('username') ? ' is-invalid' : '' }}"   type="text" placeholder="Username" name="username" autocomplete="off" value="{{ old('username') }}">
+                                    <input class="form-control m-input {{ $errors->has('username') ? ' is-invalid' : '' }}"   type="text" placeholder="Username" name="username" autocomplete="off" value="{{ old('username') }}" required="">
                                     <span id="username-error" class="invalid-feedback-line"></span>
                                 </div>
                                 <!-- end Input Email -->
 
                                 <!-- start Input Password-->
                                 <div class="form-group m-form__group">
-                                    <input class="form-control m-input m-login__form-input--last {{ $errors->has('password') ? ' is-invalid' : '' }}" type="password" placeholder="Password" name="password">
+                                    <input class="form-control m-input m-login__form-input--last {{ $errors->has('password') ? ' is-invalid' : '' }}" type="password" placeholder="Password" name="password" required="">
                                     <span id="password-error" class="invalid-feedback-line"></span>
                                 </div>
                                 <!-- end Input Email -->

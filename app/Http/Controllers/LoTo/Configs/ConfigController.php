@@ -24,14 +24,16 @@ class ConfigController extends Controller
 
     public function edit($code)
     {
-        $listParentCode = $this->getListParentCode($code);
-        
+        $config = [];
+
+        $listParentCode = $this->getListParentCode($code, $config);
+
         $urlConApi = config('app.api') . 'category?mod=get_category&code=' . $code;
         $resultRep = $this->postApi($urlConApi, [], 'GET');
 
         $category = isset($resultRep['data']) ? $resultRep['data'] : [];
 
-        return view('lotos.categories.partials.add-category', compact('listParentCode', 'category'));
+        return view('lotos.configs.partials.add-config', compact('listParentCode', 'config'));
     }
 
     /**
@@ -55,29 +57,22 @@ class ConfigController extends Controller
      * @param  [type] $data [description]
      * @return [type]       [description]
      */
-    public function getListParentCode()
+    public function getListParentCode($code = null, &$config)
     {
 
         $url = config('app.api') . 'setting?mod=list_config';
-        $json = [];
-
-        //call postApi function from parent Controller
-        $resultRep = $this->postApi($url, $json, "GET");
+        $result = $this->getListData($url);
 
         $listParentCode = [];
-        if ($resultRep['data']) {
-            foreach ($resultRep['data'] as $key => $code) {
-                $totalPecent = 0;
-                foreach ($resultRep['data'] as $childKey => $parentCode) {
-                    if ($code['Code'] != $parentCode['Code']) {
-                        if ($parentCode['Parent_Code'] == $code['Code']) {
-                            $totalPecent += $parentCode['Value'];
-                        }
-                    }
+        if (isset($result['data'])) {
+            foreach ($result['data'] as $key => $parentCode) {
+
+                if (!is_null($code) && $code != $parentCode['Code']) {
+                    $listParentCode[] = $parentCode['Code'];
                 }
 
-                if ($totalPecent < 100) {
-                    $listParentCode[] = $code['Code'];
+                if ($code == $parentCode['Code']) {
+                    $config = $parentCode;
                 }
             }
         }

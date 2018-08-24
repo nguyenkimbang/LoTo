@@ -17,6 +17,11 @@ jQuery(document).ready(function()
         if ($(this).attr('id') == 'edit') {
             url = window.baseUrl + '/api/loto/category/edit';
         }
+
+        if (!$('form#category-form').valid()) {
+            return;
+        }
+        
         //lay tat ca du lieu trong form login
         var data = $('form#category-form').serialize();
 

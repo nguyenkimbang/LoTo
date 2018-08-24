@@ -2,7 +2,6 @@
 namespace App\Http\Controllers\LoTo\Categories;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 
 /**
  *
@@ -38,7 +37,7 @@ class CategoryController extends Controller
     {
 
         $listParentCode = $this->getListParentCode($code);
-        
+
         $urlConApi = config('app.api') . 'category?mod=get_category&code=' . $code;
         $resultRep = $this->postApi($urlConApi, [], 'GET');
 
@@ -46,7 +45,6 @@ class CategoryController extends Controller
 
         return view('lotos.categories.partials.add-category', compact('listParentCode', 'category'));
     }
-
 
     /**
      * [getListParentCode description]
@@ -67,9 +65,7 @@ class CategoryController extends Controller
         if (isset($result['data'])) {
             foreach ($result['data'] as $key => $parentCode) {
 
-                if (!is_null($code) && $code !== $parentCode['Code']) {
-                    $listParentCode[] = $parentCode['Code'];
-                } else {
+                if (!is_null($code) && $code != $parentCode['Code']) {
                     $listParentCode[] = $parentCode['Code'];
                 }
             }

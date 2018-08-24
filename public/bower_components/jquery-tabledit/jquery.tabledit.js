@@ -105,9 +105,11 @@ if (typeof jQuery === 'undefined') {
                     var $td = $table.find('tbody td:nth-child(' + (parseInt(settings.columns.identifier[0]) + 1) + ')');
 
                     $td.each(function() {
+                        var currentWidth = '';
                         var style = '';
                         if(typeof $(this).find('span').attr('style') != 'undefined') {
-                            style = $(this).find('span').attr('style');
+                            currentWidth = $(this).find('span').innerWidth();
+                            style = 'width:' + currentWidth + 'px';
                         }
 
                         var span = '<span class="tabledit-span tabledit-identifier" style="'+style+'"">' + $(this).text() + '</span>';
@@ -129,10 +131,11 @@ if (typeof jQuery === 'undefined') {
                         $td.each(function() {
                             // Get text of this cell.
                             var text = $(this).text();
+                            var currentWidth = '';
                             var style = '';
-
                             if(typeof $(this).find('span').attr('style') != 'undefined') {
-                                style = $(this).find('span').attr('style');
+                                currentWidth = $(this).find('span').innerWidth();
+                                style = 'width:' + currentWidth + 'px';
                             }
 
                             // Add pointer as cursor.
