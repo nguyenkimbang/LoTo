@@ -7,7 +7,7 @@
 {!!Html::style("bower_components/global/css/components-rounded.css")!!}
 {!!Html::style("bower_components/global/css/plugins.css")!!}
 {!!Html::style("bower_components/global/plugins/uniform/css/uniform.default.css")!!} --}}
+{!!Html::style("css/app.css?v=".time())!!}
 {!!Html::style("bower_components/vendors/base/vendors.bundle.css")!!}
 {!!Html::style("bower_components/demo/default/base/style.bundle.css")!!}
-{{-- {!!Html::style("css/app.css?v=".time())!!}
-{!!Html::style("bower_components/css/custom_style.css?v=".time())!!} --}}
+{!!Html::style("bower_components/css/custom_style.css?v=".time())!!}

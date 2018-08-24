@@ -64,3 +64,15 @@
 .m-portlet {
 	margin-bottom: 0px;
 }
+
+ul>li.m-menu__item--expanded a.m-menu__toggle{
+	background: #db1430 !important;
+}
+
+ul>li.m-menu__item--expanded a>span{
+	color: #fff !important;
+}
+
+ul>li.m-menu__item--expanded a i{
+	color: #fff !important;
+}

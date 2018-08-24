@@ -11,17 +11,13 @@ jQuery(document).ready(function()
     //khi thực hiện kích vào nút Login
     submit.click(function()
     {       
-        //hidden list error
-        // setDefaultValueLogin();
+        if (!$('form#post-form').value()) {
+            return;
+        }
 
-        //check for invalid?
-        // if(!checkValueLoginBefor()) {
-        //     return false;
-        // }
-         
         //lay tat ca du lieu trong form login
-        var data = $('form#post-form').serialize();
-        var url = window.baseUrl + '/api/loto/category/post';
+        var data = $('form#post-form').serialize() + '&Content=' + CKEDITOR.instances['ckediter'].getData();
+        var url = window.baseUrl + '/api/loto/post';
         var method = 'POST';
 
         //request data to server
@@ -42,7 +38,7 @@ function sumitData(dataReq = [], url = '', method = "POST")
         if (typeof dataRep['status'] != 'undefine' && !dataRep['status']) {
             showErorr(dataRep);
         } else {
-            window.location.href = window.baseUrl + '/admin/category'
+            window.location.href = window.baseUrl + '/admin/post'
         }
     }
     });

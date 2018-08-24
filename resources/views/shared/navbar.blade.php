@@ -2,11 +2,11 @@
 	<!-- BEGIN: Aside Menu -->
 	<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark "	m-menu-vertical="1" m-menu-scrollable="0"  m-menu-dropdown-timeout="500">
 		<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
-			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+			<li class="m-menu__item  m-menu__item--submenu {{strpos(request()->url(), 'admin/user') !== false ? 'm-menu__item--open m-menu__item--expanded' : '' }}" aria-haspopup="true"  m-menu-submenu-toggle="hover">
 				<a  href="{{URL::to('/admin/user')}}" class="m-menu__link m-menu__toggle">
 					<i class="m-menu__link-icon flaticon-interface-8"></i>
 					<span class="m-menu__link-text">
-						User
+						User Manager
 					</span>
 					<i class="m-menu__ver-arrow la la-angle-right"></i>
 				</a>
@@ -26,7 +26,7 @@
 					</ul>
 				</div>
 			</li>
-			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+			<li class="m-menu__item  m-menu__item--submenu {{strpos(request()->url(), 'admin/game') !== false ? 'm-menu__item--open m-menu__item--expanded' : '' }}" aria-haspopup="true"  m-menu-submenu-toggle="hover">
 				<a  href="{{URL::to('/admin/game')}}" class="m-menu__link m-menu__toggle">
 					<i class="m-menu__link-icon flaticon-interface-8"></i>
 					<span class="m-menu__link-text">
@@ -50,7 +50,7 @@
 					</ul>
 				</div>
 			</li>
-			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+			<li class="m-menu__item  m-menu__item--submenu {{strpos(request()->url(), 'admin/config') !== false ? 'm-menu__item--open m-menu__item--expanded' : '' }}" aria-haspopup="true"  m-menu-submenu-toggle="hover">
 				<a  href="{{URL::to('/admin/config')}}" class="m-menu__link m-menu__toggle">
 					<i class="m-menu__link-icon flaticon-settings"></i>
 					<span class="m-menu__link-text">
@@ -84,7 +84,7 @@
 					</ul>
 				</div>
 			</li>
-			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+			<li class="m-menu__item  m-menu__item--submenu {{strpos(request()->url(), 'admin/category') || strpos(request()->url(), 'post') !== false ? 'm-menu__item--open m-menu__item--expanded' : '' }}" aria-haspopup="true"  m-menu-submenu-toggle="hover">
 				<a  href="{{URL::to('/admin/category')}}" class="m-menu__link m-menu__toggle">
 					<i class="m-menu__link-icon flaticon-interface-7"></i>
 					<span class="m-menu__link-text">

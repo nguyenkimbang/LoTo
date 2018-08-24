@@ -25,6 +25,8 @@ class PostController extends Controller
         //         return new JsonResponse(['status' => false, "msg" => "error", "data" => [], 'code' => 400]);
         //     }
         // }
+        //
+        // dd($request->all());
 
         $dataReq = $this->configDataRequest($request->all());
 

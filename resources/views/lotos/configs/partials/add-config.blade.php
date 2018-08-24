@@ -4,174 +4,229 @@ Config | Create
 @stop
 @section('contents')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
-	<div class="m-content">
-		<div class="row">
-			<div class="col-lg-12">
-				<!--begin::Portlet-->
-				<div class="m-portlet">
-					<div class="m-portlet__head">
-						<div class="m-portlet__head-caption">
-							<div class="m-portlet__head-title">
-								<span class="m-portlet__head-icon m--hide">
-									<i class="la la-gear"></i>
-								</span>
-								<h3 class="m-portlet__head-text">
-									Create Config Form
-								</h3>
+	<div class="m-subheader ">
+		<div class="d-flex align-items-center">
+			<div class="mr-auto">
+				<h3 class="m-subheader__title m-subheader__title--separator">Create Setting Form</h3>
+				<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+					<li class="m-nav__item m-nav__item--home">
+						<a href="{{URL::to('/dashboard')}}" class="m-nav__link m-nav__link--icon">
+							<i class="m-nav__link-icon la la-home"></i>
+						</a>
+					</li>
+					<li class="m-nav__separator">-</li>
+					<li class="m-nav__item">
+						<a href="{{URL::to('/admin/config/setting')}}" class="m-nav__link">
+							<span class="m-nav__link-text">Setting System</span>
+						</a>
+					</li>
+					<li class="m-nav__separator">-</li>
+					<li class="m-nav__item">
+						<a href="{{URL::to('/admin/config/setting/create')}}" class="m-nav__link">
+							<span class="m-nav__link-text">Setting & Add</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+					<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+						<i class="la la-plus m--hide"></i>
+						<i class="la la-ellipsis-h"></i>
+					</a>
+					<div class="m-dropdown__wrapper">
+						<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+						<div class="m-dropdown__inner">
+							<div class="m-dropdown__body">
+								<div class="m-dropdown__content">
+									<ul class="m-nav">
+										<li class="m-nav__section m-nav__section--first m--hide">
+											<span class="m-nav__section-text">Quick Actions</span>
+										</li>
+										<li class="m-nav__item">
+											<a href="" class="m-nav__link">
+												<i class="m-nav__link-icon flaticon-share"></i>
+												<span class="m-nav__link-text">Activity</span>
+											</a>
+										</li>
+										<li class="m-nav__item">
+											<a href="" class="m-nav__link">
+												<i class="m-nav__link-icon flaticon-chat-1"></i>
+												<span class="m-nav__link-text">Messages</span>
+											</a>
+										</li>
+										<li class="m-nav__item">
+											<a href="" class="m-nav__link">
+												<i class="m-nav__link-icon flaticon-info"></i>
+												<span class="m-nav__link-text">FAQ</span>
+											</a>
+										</li>
+										<li class="m-nav__item">
+											<a href="" class="m-nav__link">
+												<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+												<span class="m-nav__link-text">Support</span>
+											</a>
+										</li>
+										<li class="m-nav__separator m-nav__separator--fit">
+										</li>
+										<li class="m-nav__item">
+											<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Submit</a>
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
-					<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" action="" id="config-form">
-						<div class="m-portlet__body">
-							<div class="form-group m-form__group row">
-								<div class="col-lg-6">
-									<label for="example-text-input">
-										Code
-									</label>
-									@if(isset($config) && isset($config['Code']))
-										<div class="form-control m-input">{{$config['Code']}}</div>
-										<input class="form-control m-input" type="hidden" placeholder="{{ __('Ex: PR1') }}" name="Code" required value="{{$config['Code']}}">
-									@else
-									   <input class="form-control m-input" type="text" placeholder="{{ __('Ex: PR1') }}" name="Code" autocomplete="off" required>
-									@endif
+				</div>
+			</div>
+		</div>
+		<div class="m-content">
+			<div class="row">
+				<div class="col-lg-12">
+					<!--begin::Portlet-->
+					<div class="col-lg-4"></div>
+					<div class="col-lg-8" style="margin: 0 auto">
+						<div class="m-portlet">
+							<div class="m-portlet__head">
+								<div class="m-portlet__head-caption">
+									<div class="m-portlet__head-title">
+										<span class="m-portlet__head-icon m--hide">
+											<i class="la la-gear"></i>
+										</span>
+										<h3 class="m-portlet__head-text">
+										Create Setting Form
+										</h3>
+									</div>
 								</div>
-
-								<div class="col-lg-6">
-									<label for="example-text-input">
-										Game code
-									</label>
-									@if(isset($config) && isset($config['Game_Code']))
-										<input class="form-control m-input" type="text" placeholder="{{ __('Ex: 4x20') }}"  name="Game_Code" autocomplete="off" size = '50'" required value="{{$config['Game_Code']}}">
-									@else
-									   <input class="form-control m-input" type="text" placeholder="{{ __('Ex: 4x20') }}" name="Game_Code" autocomplete="off" size = '50'" required>
-									@endif
-
-								</div>
-
 							</div>
-
-							<div class="form-group m-form__group row">
-								<div class="col-lg-6">
-									<label for="example-text-input">
-										Value
-									</label>
-									@if(isset($config) && isset($config['Value']))
-										<input class="form-control m-input" type="number" placeholder="{{ __('Ex: 0-100') }}" name="Value" autocomplete="off" required value="{{$config['Value']}}">
-									@else
-									   <input class="form-control m-input" type="number" placeholder="{{ __('Ex: 0-100') }}" name="Value" autocomplete="off" required>
-									@endif
-
-								</div>
-
-								<div class="col-lg-6">
-									<label for="example-text-input">
-										ETH address
-									</label>
-									@if(isset($config) && isset($config['ETH_Address']))
-										<input class="form-control m-input" type="text" placeholder="{{ __('') }}" name="ETH_Address" autocomplete="off" required value="{{$config['ETH_Address']}}">
-									@else
-									   <input class="form-control m-input" type="text" placeholder="{{ __('') }}" name="ETH_Address" autocomplete="off" required>
-									@endif
-
-								</div>
-
-							</div>
-
-							<input type="hidden" name="mod" value="update_config">
-							<input type="hidden" name="isCreate" value="true">
-							<div class="form-group m-form__group row">
-								<div class="col-lg-6">
-									<label for="example-text-input">
-										Type
-									</label>
-									@if(isset($config) && isset($config['Type']))
-										<input class="form-control m-input" type="number" placeholder="{{ __('Ex: 1') }}" name="Type" autocomplete="off" required value="{{$config['Type']}}">
-									@else
-									   <input class="form-control m-input" type="number" placeholder="{{ __('Ex: 1') }}" name="Type" autocomplete="off" required>
-									@endif
-
-								</div>
-								<div class="col-lg-6">
-									<label for="example-text-input">
-										Parent code
-									</label>
-									@if(isset($config) && isset($config['Parent_Code']))
-										<input class="form-control m-input" type="hidden" placeholder="{{ __('')}}" name="Code" required value="{{$config['Code']}}">
-										<select class="form-control m-input" name="Parent_Code" required>
-											@if ($config['Parent_Code'] == 0)
-											    <option value="0" selected="">Parent</option>
+							<form class="m-form" action="" id="category-form">
+								<div class="m-portlet__body">
+									<div class="m-form__section m-form__section--first">
+										<div class="form-group m-form__group">
+											<label for="example-text-input">
+												Code
+											</label>
+											@if(isset($config) && isset($config['Code']))
+											<div class="form-control m-input">{{$config['Code']}}</div>
+											<input class="form-control m-input" type="hidden" placeholder="Enter Code" name="Code" required value="{{$config['Code']}}">
+											@else
+											<input class="form-control m-input" type="text" placeholder="{{ __('Enter Code') }}" name="Code" autocomplete="off" required>
 											@endif
-											@foreach($listParentCode as $key => $parentCode)
-											<option value="{{$parentCode}}" {{$config['Parent_Code'] == $parentCode ? 'selected="selected"' : ''}}>{{$parentCode}}</option>
-											@endforeach
-										</select>
-									@else
-									   <select class="form-control m-input" name="Parent_Code" required>
-											<option value="">Choose parent code...</option>
-											@foreach($listParentCode as $key => $parentCode)
-											<option value="{{$parentCode}}">{{$parentCode}}</option>
-											@endforeach
-										</select>
-									@endif
-
-									{{-- <input class="form-control m-input" type="number" placeholder="{{ __('Parent_Code (Ex: 0)') }}" name="Parent_Code" autocomplete="off"> --}}
-								</div>
-							</div>
-
-							<div class="form-group m-form__group row">
-
-								<div class="col-lg-6">
-									<label for="example-text-input">
-										Description
-									</label>
-									@if(isset($config) && isset($config['Description']))
-										<textarea class="form-control m-input" placeholder="{{ __('') }}" name="Description" required>{{$config['Description']}}</textarea>
-									@else
-									   <textarea class="form-control m-input" placeholder="{{ __('') }}" name="Description" required></textarea>
-									@endif
-
-								</div>
-
-
-								<div class="col-lg-6">
-									<label for="example-text-input">
-										Status
-									</label>
-									@if(isset($config) && isset($config['Status']))
-										<div>
-											<span class="m-switch m-switch--icon m-switch--success">
-												<label>
-									                <input type="checkbox" {{$config['Status'] ? 'checked="checked"' : ''}} name="Status" required="">
-									                <span></span>
-							                    </label>
-							                </span>
-							            </div>
-									@else
-									   <div>
-											<span class="m-switch m-switch--icon m-switch--success">
-												<label>
-									                <input type="checkbox" checked="checked" name="Status" required="">
-									                <span></span>
-							                    </label>
-							                </span>
-							            </div>
-									@endif
-
-								</div>
-							</div>
-							<div style="clear: both;"></div>
-							<div class="m-portlet__foot m-portlet__foot--fit">
-								<div class="m-form__actions" style="text-align: right;">
-									<button type="submit" class="btn btn-success" id="{{isset($config['Code']) ? 'edit' : 'add'}}">
-										Submit
-									</button>
-									<button type="reset" class="btn btn-default">
-										Cancel
-									</button>
-								</div>
+										</div>
+										<div class="form-group m-form__group">
+											<label for="example-text-input">
+												Game code
+											</label>
+											@if(isset($config) && isset($config['Game_Code']))
+											<input class="form-control m-input" type="text" placeholder="{{ __('Enter Game Code') }}"  name="Game_Code" autocomplete="off" size = '50'" required value="{{$config['Game_Code']}}">
+											@else
+											<input class="form-control m-input" type="text" placeholder="{{ __('Enter Game Code') }}" name="Game_Code" autocomplete="off" size = '50'" required>
+											@endif
+										</div>
+										<div class="form-group m-form__group">
+											<label for="example-text-input">
+												Value
+											</label>
+											@if(isset($config) && isset($config['Value']))
+											<input class="form-control m-input" type="number" placeholder="{{ __('Enter Value') }}" name="Value" autocomplete="off" required value="{{$config['Value']}}">
+											@else
+											<input class="form-control m-input" type="number" placeholder="{{ __('Enter Value') }}" name="Value" autocomplete="off" required>
+											@endif
+										</div>
+										<div class="form-group m-form__group">
+											<label for="example-text-input">
+												ETH address
+											</label>
+											@if(isset($config) && isset($config['ETH_Address']))
+											<input class="form-control m-input" type="text" placeholder="{{ __('Enter ETH Address') }}" name="ETH_Address" autocomplete="off" required value="{{$config['ETH_Address']}}">
+											@else
+											<input class="form-control m-input" type="text" placeholder="{{ __('Enter ETH Address') }}" name="ETH_Address" autocomplete="off" required>
+											@endif
+										</div>
+										<input type="hidden" name="mod" value="update_config">
+										<input type="hidden" name="isCreate" value="true">
+										<div class="form-group m-form__group">
+											<label for="example-text-input">
+												Type
+											</label>
+											@if(isset($config) && isset($config['Type']))
+											<input class="form-control m-input" type="number" placeholder="{{ __('Type') }}" name="Type" autocomplete="off" required value="{{$config['Type']}}">
+											@else
+											<input class="form-control m-input" type="number" placeholder="{{ __('Type') }}" name="Type" autocomplete="off" required>
+											@endif
+										</div>
+										<div class="form-group m-form__group">
+											<label for="example-text-input">
+												Parent code
+											</label>
+											@if(isset($config) && isset($config['Parent_Code']))
+											<select class="form-control m-input" name="Parent_Code" required>
+												@if ($config['Parent_Code'] == 0)
+												<option value="0" selected="">Parent</option>
+												@endif
+												@foreach($listParentCode as $key => $parentCode)
+												<option value="{{$parentCode}}" {{$config['Parent_Code'] == $parentCode ? 'selected="selected"' : ''}}>{{$parentCode}}</option>
+												@endforeach
+											</select>
+											@else
+											<select class="form-control m-input" name="Parent_Code" required>
+												<option value="">Choose parent code...</option>
+												@foreach($listParentCode as $key => $parentCode)
+												<option value="{{$parentCode}}">{{$parentCode}}</option>
+												@endforeach
+											</select>
+											@endif
+											{{-- <input class="form-control m-input" type="number" placeholder="{{ __('Parent_Code (Ex: 0)') }}" name="Parent_Code" autocomplete="off"> --}}
+										</div>
+										<div class="form-group m-form__group">
+											<label for="example-text-input">
+												Description
+											</label>
+											@if(isset($config) && isset($config['Description']))
+											<textarea class="form-control m-input" placeholder="{{ __('') }}" name="Description" required rows="8">{{$config['Description']}}</textarea>
+											@else
+											<textarea class="form-control m-input" placeholder="{{ __('') }}" name="Description" required rows="8"></textarea>
+											@endif
+										</div>
+										<div class="form-group m-form__group">
+											<label for="example-text-input">
+												Status
+											</label>
+											@if(isset($config) && isset($config['Status']))
+											<div>
+												<span class="m-switch m-switch--icon m-switch--success">
+													<label>
+														<input type="checkbox" {{$config['Status'] ? 'checked="checked"' : ''}} name="Status" required="">
+														<span></span>
+													</label>
+												</span>
+											</div>
+											@else
+											<div>
+												<span class="m-switch m-switch--icon m-switch--success">
+													<label>
+														<input type="checkbox" checked="checked" name="Status" required="">
+														<span></span>
+													</label>
+												</span>
+											</div>
+											@endif
+										</div>
+									</div>
+									<div class="m-portlet__foot m-portlet__foot--fit">
+										<div class="m-form__actions" style="text-align: right;">
+											<button type="submit" class="btn btn-success" id="{{isset($category['Code']) ? 'edit' : 'add'}}" style="margin-right: 8px">
+											Submit
+											</button>
+											<button type="reset" class="btn btn-default">
+											Cancel
+											</button>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>

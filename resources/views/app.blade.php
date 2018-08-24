@@ -53,10 +53,12 @@ License: You must have a valid license purchased only from themeforest(the above
 
 				@yield('contents')
 			</div>
+			@include('shared/footer')
 		</div>
 	</body>
 
 	@include('shared/scripts')
 
 	@yield('scripts')
+
 </html>
