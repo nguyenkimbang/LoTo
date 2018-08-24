@@ -13,9 +13,100 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
+    /**
+     * 
+     */
     public function store(Request $request)
     {
-        return new JsonResponse(['status' => true, 'data' => ['name' => 1111]]);
+        $dataReq = $this->configDataReq($request->all());
+
+        if (!empty($dataReq) && isset($request->Password)) {
+            $dataReq[] = [
+                "name" => "Password",
+                "contents" => $request->Password,
+            ];
+        }
+
+        $dataReq = $this->getContentFile($request, $dataReq);
+
+
+        $url = config('app.api') . 'users';
+
+        return new JsonResponse([]);
+        return new JsonResponse($this->postApiHasFile($url, $dataReq, 'POST'));
+    }
+
+    public function edit(Request $request)
+    {
+        $dataReq = $this->configDataReq($request->all());
+
+        $dataReq = $this->getContentFile($request, $dataReq);
+
+        $url = config('app.api') . 'users';
+        return new JsonResponse([]);
+        return new JsonResponse($this->postApiHasFile($url, $dataReq, 'POST'));
+    }
+
+    public function remove(Request $request)
+    {
+        $url = config('app.api') . 'users?mod=delete_user&id=' . $request->id;
+
+        return new JsonResponse([]);
+        return new JsonResponse($this->postApi($url, [], 'DELETE'));
+    }
+
+    public function getContentFile(Request $request, $dataReq)
+    {
+        if ($request->hasFile('Avatar')) {
+            $file = $request->Avatar;
+
+            if ($file->getClientSize() > 0) {
+
+                $time = time();
+
+                $arr_image = [
+                    'name' => 'image',
+                    'originalname' => $time . $file->getClientOriginalName(),
+                    'filename' => $time . $file->getClientOriginalName(),
+                    'mimetype' => $file->getMimeType(),
+                    'contents' => !empty($file->getPathName()) ? file_get_contents($file->getPathName()) : '',
+                ];
+
+                array_push($dataReq, $arr_image);
+            }
+        }
+
+        return $dataReq;
+    }
+
+    public function configDataReq($dataReq = [], $mod = 'insert_user')
+    {
+        if (!empty($dataReq)) {
+            $data = [
+                [
+                    "name" => $mod,
+                    "contents" => $mod,
+                ],
+                [
+                    "name" => "Username",
+                    "contents" => (isset($dataReq['Username'])) ? $dataReq['Username'] : '',
+                ],
+                [
+                    "name" => "Full_Name",
+                    "contents" => (isset($dataReq['Full_Name'])) ? $dataReq['Full_Name'] : '',
+                ],
+                [
+                    "name" => "Role_Code",
+                    "contents" => (isset($dataReq['Role_Code'])) ? $dataReq['Role_Code'] : '',
+                ],
+                [
+                    "name" => "Avatar",
+                    "contents" => (isset($dataReq['Avatar'])) ? $dataReq['Avatar'] : '',
+                ]
+            ];
+            return $data;
+        }
+        return [];
     }
 
     /**

@@ -22,7 +22,7 @@ class SystemSettingController extends Controller
     {
         if (isset($request->Code)) {
             if ($this->checkExistCode($request->Code)) {
-                return new JsonResponse(['status' => false, "msg" => "error", "data" => [], 'code' => 400]);
+                return new JsonResponse(['status' => false, "msg" => "error", "data" => [], 'code' => 605]);
             }
         }
 

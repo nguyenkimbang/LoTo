@@ -14,9 +14,9 @@ jQuery(document).ready(function()
         var url = window.baseUrl + '/api/loto/game';
         var method = 'POST';
 
-        // if ($(this).attr('id') == 'edit') {
-        //     url = window.baseUrl + '/api/loto/category/edit';
-        // }
+        if ($(this).attr('id') == 'edit') {
+            url = window.baseUrl + '/api/loto/game/edit';
+        }
 
         if (!$('form#game-form').valid()) {
             return;

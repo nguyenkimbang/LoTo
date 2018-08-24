@@ -27,4 +27,36 @@ class GameController extends Controller
     {
         return view('lotos.games.partials.create');
     }
+
+    public function edit($code)
+    {
+        $game = $this->getGame($code);
+        return view('lotos.games.partials.create', compact('game'));
+    }
+
+    /**
+     * [getGame description]
+     * get list config with total percent form childs < 100
+     *
+     * @author [Nguyen Kim Bang] <[<nguyenkimbang208@gmail.com>]>
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
+    public function getGame($code = null)
+    {
+
+        $url = $url = config('app.api') . 'game?mod=list_game_admin';
+        $result = $this->getListData($url);
+
+        if (isset($result['data'])) {
+            foreach ($result['data'] as $key => $game) {
+
+                if ($code == $game['Code']) {
+                    return $game;
+                }
+            }
+        }
+
+        return [];
+    }
 }

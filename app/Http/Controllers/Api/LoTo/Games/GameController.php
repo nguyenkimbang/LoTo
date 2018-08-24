@@ -15,15 +15,48 @@ class GameController extends Controller
 
         $dataReq = $this->configDataReq($request->all());
 
-        if ($request->hasFile('image')) {
-            $file = $request->image;
+        $dataReq = $this->getContentFile($request, $dataReq);
+
+        $url = config('app.api') . 'game';
+
+        return [];
+
+        return new JsonResponse($this->postApiHasFile($url, $dataReq));
+    }
+
+    public function edit(Request $request)
+    {
+        $dataReq = $this->configDataReq($request->all());
+
+        $dataReq = $this->getContentFile($request, $dataReq);
+
+        $url = config('app.api') . 'game';
+
+        return [];
+
+        return new JsonResponse($this->postApiHasFile($url, $dataReq));
+    }
+
+    public function remove(Request $request)
+    {
+        $url = config('app.api') . 'games?mod=delete_game&code=' . $request->Code;
+
+        return [];
+
+        return new JsonResponse($this->postApi($url, [], 'DELETE'));
+    }
+
+    public function getContentFile(Request $request, $dataReq)
+    {
+        if ($request->hasFile('Image')) {
+            $file = $request->Image;
 
             if ($file->getClientSize() > 0) {
 
                 $time = time();
 
                 $arr_image = [
-                    'name' => 'image',
+                    'name' => 'Image',
                     'originalname' => $time . $file->getClientOriginalName(),
                     'filename' => $time . $file->getClientOriginalName(),
                     'mimetype' => $file->getMimeType(),
@@ -34,9 +67,7 @@ class GameController extends Controller
             }
         }
 
-        $url = config('app.api') . 'game';
-
-        return new JsonResponse($this->postApiHasFile($url, $dataReq));
+        return $dataReq;
     }
 
     /**

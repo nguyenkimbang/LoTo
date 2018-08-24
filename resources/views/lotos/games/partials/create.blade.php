@@ -48,7 +48,7 @@ Game | Create
 									</div>
 								</div>
 							</div>
-							<form class="m-form" action="" id="category-form">
+							<form class="m-form" id="category-form" novalidate="">
 								<div class="m-portlet__body">
 									<div class="m-form__section m-form__section--first">
 										<div class="form-group m-form__group">
@@ -107,7 +107,7 @@ Game | Create
 												Image
 											</label>
 											@if(isset($game) && isset($game['Image']))
-											<input class="form-control m-input" type="file" placeholder="{{ __('Image') }}" id="image" name="Image" autocomplete="off" size = '50'" required value="{{$game['Image']}}">
+											<input class="form-control m-input" type="file" placeholder="{{ __('Image111') }}" id="image" name="Image" autocomplete="off" size = '50'" required value="{{$game['Image']}}">
 											@else
 											<input class="form-control m-input" type="file" placeholder="{{ __('Image') }}" id="image" name="Image" autocomplete="off" size = '50'" required>
 											@endif
@@ -170,7 +170,7 @@ Game | Create
 								</div>
 								<div class="m-portlet__foot m-portlet__foot--fit">
 									<div class="m-form__actions" style="text-align: right;">
-										<button type="submit" class="btn btn-success" id="{{isset($category['Code']) ? 'edit' : 'add'}}" style="margin-right: 8px">
+										<button type="button" class="btn btn-success" id="{{isset($category['Code']) ? 'edit' : 'add'}}" style="margin-right: 8px">
 										Submit
 										</button>
 										<button type="reset" class="btn btn-default">

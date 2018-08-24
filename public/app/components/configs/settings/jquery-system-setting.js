@@ -18,7 +18,9 @@ jQuery(document).ready(function()
         // if(!checkValueLoginBefor()) {
         //     return false;
         // }
-         
+         if(!$('#setting-form').valid()) {
+            return;
+         }
         //lay tat ca du lieu trong form login
         var data = $('form#setting-form').serialize();
         var url = window.baseUrl + '/api/loto/config/setting';
@@ -79,21 +81,35 @@ function setDefaultValueLogin()
 function showErorr(data) {
     if (typeof data.code != 'undefined') {
         switch(data.code) {
-            case 600:
-                $('#show-error-config').html('Parent code not exist!').addClass('danger');
-                $("html").scrollTop(0);
+            case 700:
+                swal("Error!", 'Hệ thống lỗi xin làm lại', "error");
                 break;
-            case 601:
-                $('#show-error-config').html('Total percentage is not enough!').addClass('danger');
-                $("html").scrollTop(0);
+            case 701:
+                swal("Error!", 'Bạn không có quyền sử dụng tính năng này', "error");
                 break;
-            case 602:
-                $('#show-error-config').html("Today's ticket has out of!").addClass('danger');
-                $("html").scrollTop(0);
+            case 702:
+                swal("Error!", 'Token sai hoặc hết hạn', "error");
                 break;
-            case 400:
-                $('#show-error-config').html("This setting existed!").addClass('danger');
-                $("html").scrollTop(0);
+            case 703:
+                swal("Error!", 'Không tìm thấy tính năng này', "error");
+                break;
+            case 704:
+                swal("Error!", 'Account bị lock liên hệ agent để biết thêm chi tiết', "error");
+                break;
+            case 705:
+                swal("Error!", 'Hệ thống lỗi làm ơn làm lại', "error");
+                break;
+            case 706:
+                swal("Error!", 'Thiếu agent code', "error");
+                break;
+            case 707:
+                swal("Error!", 'Agent code không tồn tại', "error");
+                break;
+            case 708:
+                swal("Error!", 'Agent hết hạn sử dụng', "error");
+                break;
+            case 605:
+                swal("Error!", 'Code đã tồn tại', "error");
                 break;
         }
     }

@@ -48,7 +48,7 @@ Config | Create
 									</div>
 								</div>
 							</div>
-							<form class="m-form" action="" id="config-form">
+							<form class="m-form" action="" id="config-form" novalidate="">
 								<div class="m-portlet__body">
 									<div class="m-form__section m-form__section--first">
 										<div class="form-group m-form__group">
@@ -112,7 +112,7 @@ Config | Create
 											</label>
 											@if(isset($config) && isset($config['Parent_Code']))
 											<select class="form-control m-input" name="Parent_Code" required>
-												@if ($config['Parent_Code'] == 0)
+												@if ($config['Parent_Code'] === 0)
 												<option value="0" selected="">Parent</option>
 												@endif
 												@foreach($listParentCode as $key => $parentCode)

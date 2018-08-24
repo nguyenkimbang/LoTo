@@ -29,13 +29,13 @@ $(document).ready(function() {
                     }
                 }, {
                     field: "Keyword_Seo",
-                    title: "Ship Keyword_Seo",
+                    title: "Ship Keyword Seo",
                     responsive: {
                         visible: "lg"
                     }
                 }, {
                     field: "Parent_Code",
-                    title: "Parent_Code",
+                    title: "Parent Code",
 
                 }, {
                     field: "Actions",

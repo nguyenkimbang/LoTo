@@ -48,7 +48,7 @@ Config | Create
 									</div>
 								</div>
 							</div>
-							<form class="m-form" action="" id="post-form">
+							<form class="m-form" action="" id="post-form" novalidate="">
 								<div class="m-portlet__body">
 									<div class="m-form__section m-form__section--first">
 										<div class="form-group m-form__group">

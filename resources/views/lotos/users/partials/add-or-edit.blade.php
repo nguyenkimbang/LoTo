@@ -2,64 +2,118 @@
 @section('title')
 User | Add
 @stop
-
 @section('contents')
-<div class="m-grid m-grid--hor m-grid--root m-page">
-	<div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-2" id="m_regis" style="background-image: url({!!Asset('images/users/media/img//bg/bg-3.jpg')!!}">
-		<div class="m-grid__item m-grid__item--fluid m-login__wrapper">
-			<div class="m-login__container">
-				<div class="m-login__logo">
-					<a href="#">
-						<img src="{!!Asset('images/users/media/img//logos/logo-1.png')!!}" alt="logo-header-regis">
-					</a>
-				</div>
-				<div class="m-login__signup">
-					<div class="m-login__head">
-						<h3 class="m-login__title">
-							Create Account
-						</h3>
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+	<div class="m-subheader ">
+		<div class="d-flex align-items-center">
+			<div class="mr-auto">
+				<h3 class="m-subheader__title m-subheader__title--separator">Create Config Form</h3>
+				<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+					<li class="m-nav__item m-nav__item--home">
+						<a href="{{URL::to('/dashboard')}}" class="m-nav__link m-nav__link--icon">
+							<i class="m-nav__link-icon la la-home"></i>
+						</a>
+					</li>
+					<li class="m-nav__separator">-</li>
+					<li class="m-nav__item">
+						<a href="" class="m-nav__link">
+							<span class="m-nav__link-text">Add Config</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div>
+			</div>
+		</div>
+		<div class="m-content">
+			<div class="row">
+				<div class="col-lg-12">
+					<!--begin::Portlet-->
+					<div class="col-lg-4"></div>
+					<div class="col-lg-8" style="margin: 0 auto">
+						<div class="m-portlet">
+							<div class="m-portlet__head">
+								<div class="m-portlet__head-caption">
+									<div class="m-portlet__head-title">
+										<span class="m-portlet__head-icon m--hide">
+											<i class="la la-gear"></i>
+										</span>
+										<h3 class="m-portlet__head-text">
+										Create Config Form
+										</h3>
+									</div>
+								</div>
+							</div>
+							<form class="m-form" action="" id="user-form" method="post" novalidate="">
+								<div class="m-portlet__body">
+									<div class="m-form__section m-form__section--first">
+										<div class="form-group m-form__group">
+											<label for="example-text-input">
+												Username
+											</label>
+											@if(isset($user) && isset($user['Username']))
+											<input class="form-control m-input" type="text" placeholder="{{ __('Enter User Name')}}" name="Username" required value="{{$user['Username']}}">
+											@else
+											<input class="form-control m-input" type="text" placeholder="{{ __('Enter Username')}}" name="Username" required>
+											@endif
+										</div>
+										<div class="form-group m-form__group">
+											<label for="example-text-input">
+												Fullname
+											</label>
+											@if(isset($user) && isset($user['Full_Name']))
+											<input class="form-control m-input" type="text" placeholder="{{ __('Enter Fullname')}}" name="Full_Name" required value="{{$user['Full_Name']}}">
+											@else
+											<input class="form-control m-input" type="text" placeholder="{{ __('Enter Fullname')}}" name="Full_Name" required>
+											@endif
+										</div>
+										<div class="form-group m-form__group">
+											<label for="example-text-input">
+												Role Code
+											</label>
+											@if(isset($user) && isset($user['Role_Code']))
+											<input class="form-control m-input" type="text" placeholder="{{ __('Enter Role Code')}}" name="Role_Code" required value="{{$user['Role_Code']}}">
+											@else
+											<input class="form-control m-input" type="text" placeholder="{{ __('Enter Role Code')}}" name="Role_Code" required>
+											@endif
+										</div>
+										<div class="form-group m-form__group">
+											<label for="example-text-input">
+												Avatar
+											</label>
+											@if(isset($user) && isset($user['Image']))
+											<input class="form-control m-input" type="file" placeholder="{{ __('Choose Image...') }}" id="image" name="Avatar" autocomplete="off" size = '50'" required value="{{$game['Image']}}">
+											@else
+											<input class="form-control m-input" type="file" placeholder="{{ __('Chosse Image...') }}" id="image" name="Avatar" autocomplete="off" size = '50'" required>
+											@endif
+										</div>
+										@if(!isset($user))
+										<div class="form-group m-form__group">
+											<label for="example-text-input">
+												Password
+											</label>
+											@if(isset($user) && isset($user['Password']))
+											<input class="form-control m-input" type="password" placeholder="{{ __('Enter Password')}}" name="Password" required value="{{$user['Password']}}">
+											@else
+											<input class="form-control m-input" type="password" placeholder="{{ __('Enter Password')}}" name="Password" required>
+											@endif
+										</div>
+										@endif
+									</div>
+								</div>
+								<div class="m-portlet__foot m-portlet__foot--fit">
+									<div class="m-form__actions" style="text-align: right;">
+										<button type="button" class="btn btn-success" id="{{isset($user['ID']) ? 'edit' : 'add'}}" style="margin-right: 8px">
+										Submit
+										</button>
+										<button type="reset" class="btn btn-default">
+										Cancel
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
 					</div>
-					<form class="m-login__form m-form" action="" id="user-form">
-						<div class="form-group m-form__group">
-							<input class="form-control m-input" type="text" placeholder="{{ __('Username') }}" name="Username" >
-							@if ($errors->has('Username'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('Username') }}</strong>
-                                </span>
-                            @endif
-						</div>
-						<div class="form-group m-form__group">
-							<input class="form-control m-input" type="text" placeholder="{{ __('FullName') }}" name="Full_Name" autocomplete="off">
-							@if ($errors->has('Full_Name'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('Full_Name') }}</strong>
-                                </span>
-                            @endif
-						</div>
-
-						<div class="form-group m-form__group">
-							<input class="form-control m-input" type="text" placeholder="{{ __('Role Code') }}" name="Role_Code" autocomplete="off">
-							@if ($errors->has('Role_Code'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('Role_Code') }}</strong>
-                                </span>
-                            @endif
-						</div>
-
-						<div class="form-group m-form__group">
-							<input class="form-control m-input" type="password" placeholder="{{ __('Password') }}" name="password">
-							@if ($errors->has('password'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                            @endif
-						</div>
-						<div class="m-login__form-action">
-							<button id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn" type="submit">
-								{{ __('Sign up') }}
-							</button>
-						</div>
-					</form>
 				</div>
 			</div>
 		</div>

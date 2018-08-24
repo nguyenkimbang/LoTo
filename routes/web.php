@@ -27,6 +27,7 @@ Route::get('logout', 'LoTo\Users\UserController@logout');
 Route::middleware('is.login')->get('/dashboard', 'LoTo\DashboardController@index');
 Route::middleware('is.login')->prefix('admin')->group(function () {
     //route User
+    Route::get('user/edit/{id}', 'LoTo\Users\UserController@edit');
     Route::get('user/get-data', 'LoTo\Users\UserController@getData');
     Route::resource('user', 'LoTo\Users\UserController');
 
@@ -41,6 +42,7 @@ Route::middleware('is.login')->prefix('admin')->group(function () {
     Route::resource('config', 'LoTo\Configs\ConfigController');
 
     //route game
+    Route::get('game/edit/{code}', 'LoTo\Games\GameController@edit');
     Route::get('game/get-data', 'LoTo\Games\GameController@getData');
     Route::resource('game', 'LoTo\Games\GameController');
 

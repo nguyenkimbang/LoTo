@@ -92,14 +92,22 @@ jQuery(document).ready(function() {
                     overflow: "visible",
                     template: function(e, a, i) {
 
+                        var url = '#';
+                        var disble = 'disabled';
+
+                        if(e.Type != 1) {
+                            url = window.baseUrl +`/admin/config/edit/`+e.Code;
+                            disble = '';
+                        }
+
                         return `
-                        <a href="`+window.baseUrl +`/admin/config/edit/`+e.Code+`" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-edit-button">
+                        <a href="`+url+`" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-edit-button">
                             <i class="la la-edit"></i>
                         </a>`+
                         // <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-edit-button">
                         //     <i class="la la-edit"></i>
                         // </button>
-                        `<button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-delete-button"  onclick="removeConfig('`+ e.Code +`')">
+                        `<button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-delete-button"  onclick="removeConfig('`+ e.Code +`')" `+disble+` >
                             <i class="la la-trash"></i>
                         </button>
                         <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-save-button" style="display: none; float: none;">

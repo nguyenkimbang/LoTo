@@ -33,6 +33,20 @@ class UserController extends Controller
         return view('lotos.users.partials.add-or-edit');
     }
 
+    /**
+     * [create description]
+     * @author [Nguyen Kim Bang] <[<nguenkimbang208@gmail.com>]>
+     * @return [type] view [redirect to create or edit page]
+     */
+    public function edit($id)
+    {
+        $url = config('app.api') . 'users?mod=get_info_user&id=' . $id;
+        $result = $this->getListData($url);
+
+        $user = isset($result['data']) ? $result['data'][0]: [];
+        return view('lotos.users.partials.add-or-edit', compact('user'));
+    }
+
     public function getData()
     {
         $listUser = [];

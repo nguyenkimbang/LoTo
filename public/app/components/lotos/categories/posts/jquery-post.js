@@ -88,21 +88,64 @@ function showErorr(data) {
     if (typeof data.code != 'undefined') {
         switch(data.code) {
             case 600:
-                $('#show-error-config').html('Parent code not exist!').addClass('danger');
-                $("html").scrollTop(0);
+                swal("Error!", 'Parent code không tồn tại', "error");
+                
                 break;
             case 601:
-                $('#show-error-config').html('Total percentage is not enough!').addClass('danger');
-                $("html").scrollTop(0);
+                swal("Error!", 'Số phần trăm còn lại không đủ', "error");
                 break;
             case 602:
-                $('#show-error-config').html("Today's ticket has out of!").addClass('danger');
-                $("html").scrollTop(0);
+                swal("Error!", 'Đã hết số lượt vé trong ngày', "error");
+                break;
+            case 603:
+                swal("Error!", 'Hết thời gian đặt vé', "error");
+                break;
+            case 604:
+                swal("Error!", 'Post không tồn tại', "error");
                 break;
             case 605:
-                $('#show-error-config').html("This post existed!").addClass('danger');
-                $("html").scrollTop(0);
+                swal("Error!", 'Code đã tồn tại', "error");
+                break;
+            case 606:
+                swal("Error!", 'Code không tồn tại', "error");
                 break;
         }
     }
+}
+
+
+function removePost(id) {
+    swal({
+        title: "Bạn có chắc chắn?",
+        text: "Bạn muốn xóa trường đã chọn!",
+        type: "warning",
+        showCancelButton: !0,
+        confirmButtonText: "Đồng ý, xóa nó!",
+        cancelButtonText: "Không, hủy!",
+        reverseButtons: !0
+    }).then(function(e) {
+        if (e.value == true) {
+            $.ajax({
+                url: window.baseUrl + '/api/loto/post/remove',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    id: id
+                },
+                // beforeSend: function() {
+                //     mApp.blockPage()
+                // },
+                success: function(res) {
+                    if (res.hasOwnProperty("code") == true) {
+                        swal("Hủy bỏ", messerr[res.code].messenger, "error")
+                    } else {
+                        swal("Xóa thành công!", "Đã xóa trường được chọn!", "success")
+                        location.reload();
+                    }
+                }
+            })
+        } else {
+            swal("Hủy bỏ", "Đã đã giữ lại trường đã chọn :)", "error")
+        }
+    })
 }

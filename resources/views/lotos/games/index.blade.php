@@ -66,4 +66,5 @@ Game List Admin
 @stop
 @section('scripts')
 {!!Html::script('app/components/games/jquery-datatable-game.js?v='.time())!!}
+{!!Html::script('app/components/games/jquery-game.js?v='.time())!!}
 @stop

@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('loto')->group(function () {
     //route User
+    Route::post('user/edit', 'Api\LoTo\Users\UserController@edit');
+    Route::post('user/remove', 'Api\LoTo\Users\UserController@remove');
     Route::post('user/get-data', 'Api\LoTo\Users\UserController@getData');
     Route::post('user/login', 'Api\LoTo\Users\UserController@login');
     Route::resource('user', 'Api\LoTo\Users\UserController');
@@ -35,10 +37,13 @@ Route::prefix('loto')->group(function () {
     Route::resource('config', 'Api\LoTo\Configs\ConfigController');
 
     //rout game
+    Route::post('game/edit', 'Api\LoTo\Games\GameController@edit');
+    Route::post('game/remove', 'Api\LoTo\Games\GameController@remove');
     Route::post('game/get-data', 'Api\LoTo\Games\GameController@getData');
     Route::resource('game', 'Api\LoTo\Games\GameController');
 
     //route post
+    Route::post('post/remove', 'Api\LoTo\Categories\Posts\PostController@remove');
     Route::post('post/edit', 'Api\LoTo\Categories\Posts\PostController@edit');
     Route::post('post/get-data', 'Api\LoTo\Categories\Posts\PostController@getData');
     Route::resource('post', 'Api\LoTo\Categories\Posts\PostController');

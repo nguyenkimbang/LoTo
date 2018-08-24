@@ -65,7 +65,7 @@ class CategoryController extends Controller
         if (isset($result['data'])) {
             foreach ($result['data'] as $key => $parentCode) {
 
-                if (!is_null($code) && $code != $parentCode['Code']) {
+                if (is_null($code) || $code != $parentCode['Code']) {
                     $listParentCode[] = $parentCode['Code'];
                 }
             }

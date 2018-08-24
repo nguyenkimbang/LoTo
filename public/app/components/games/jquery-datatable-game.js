@@ -98,12 +98,23 @@ $(document).ready(function() {
                     sortable: !1,
                     overflow: "visible",
                     template: function(e, a, i) {
+                        var url = '#';
+                        var disble = 'disabled';
+
+                        // if(e.Type != 1) {
+                        //     url = window.baseUrl +`/admin/game/edit/`+e.Code;
+                        //     disble = '';
+                        // }
 
                         return `
-                        <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-edit-button">
+                        <a href="`+url+`" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-edit-button">
                             <i class="la la-edit"></i>
-                        </button>
-                        <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-delete-button"  onclick="removeGame('`+ e.Code +`')">
+                        </a>`+
+                        // <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-edit-button">
+                        //     <i class="la la-edit"></i>onclick="removeGame('`+ e.Code +`')"
+                        // </button>
+                        `
+                        <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-delete-button"  `+disble+`>
                             <i class="la la-trash"></i>
                         </button>
                         <button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill tabledit-save-button" style="display: none; float: none;">

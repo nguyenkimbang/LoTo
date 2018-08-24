@@ -22,7 +22,7 @@ class ConfigController extends Controller
 
         if (isset($request->isCreate) && isset($request->Code)) {
             if ($this->checkCreate($request->Code)) {
-                return new JsonResponse(['status' => false, "msg" => "error", "data" => [], 'code' => 400]);
+                return new JsonResponse(['status' => false, "msg" => "error", "data" => [], 'code' => 605]);
             }
         }
 

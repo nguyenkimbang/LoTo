@@ -14,6 +14,7 @@
 {!!Html::script('bower_components/jquery-tabledit/jquery.tabledit.js?v='.time())!!}
 {!!Html::script('ckeditor/ckeditor.js?v='.time())!!}
 {!!Html::script('ckfinder/ckfinder.js?v='.time())!!}
+{!!Html::script('shared/showErrorStatusCode.js?v='.time())!!}
 
 <script type="text/javascript">
 	window.baseUrl = '{!!URL::to('/')!!}';
